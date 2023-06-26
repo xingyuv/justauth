@@ -36,10 +36,10 @@ public class AuthToutiaoRequest extends AuthDefaultRequest {
         this.checkResponse(accessTokenObject);
 
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .openId(accessTokenObject.getString("open_id"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .openId(accessTokenObject.getString("open_id"))
+                .build();
     }
 
     @Override
@@ -56,16 +56,16 @@ public class AuthToutiaoRequest extends AuthDefaultRequest {
         String anonymousUserName = "匿名用户";
 
         return AuthUser.builder()
-            .rawUserInfo(user)
-            .uuid(user.getString("uid"))
-            .username(isAnonymousUser ? anonymousUserName : user.getString("screen_name"))
-            .nickname(isAnonymousUser ? anonymousUserName : user.getString("screen_name"))
-            .avatar(user.getString("avatar_url"))
-            .remark(user.getString("description"))
-            .gender(AuthUserGender.getRealGender(user.getString("gender")))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(user)
+                .uuid(user.getString("uid"))
+                .username(isAnonymousUser ? anonymousUserName : user.getString("screen_name"))
+                .nickname(isAnonymousUser ? anonymousUserName : user.getString("screen_name"))
+                .avatar(user.getString("avatar_url"))
+                .remark(user.getString("description"))
+                .gender(AuthUserGender.getRealGender(user.getString("gender")))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -78,13 +78,13 @@ public class AuthToutiaoRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("response_type", "code")
-            .queryParam("client_key", config.getClientId())
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("auth_only", 1)
-            .queryParam("display", 0)
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("response_type", "code")
+                .queryParam("client_key", config.getClientId())
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("auth_only", 1)
+                .queryParam("display", 0)
+                .queryParam("state", getRealState(state))
+                .build();
     }
 
     /**
@@ -96,11 +96,11 @@ public class AuthToutiaoRequest extends AuthDefaultRequest {
     @Override
     protected String accessTokenUrl(String code) {
         return UrlBuilder.fromBaseUrl(source.accessToken())
-            .queryParam("code", code)
-            .queryParam("client_key", config.getClientId())
-            .queryParam("client_secret", config.getClientSecret())
-            .queryParam("grant_type", "authorization_code")
-            .build();
+                .queryParam("code", code)
+                .queryParam("client_key", config.getClientId())
+                .queryParam("client_secret", config.getClientSecret())
+                .queryParam("grant_type", "authorization_code")
+                .build();
     }
 
     /**
@@ -112,9 +112,9 @@ public class AuthToutiaoRequest extends AuthDefaultRequest {
     @Override
     protected String userInfoUrl(AuthToken authToken) {
         return UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("client_key", config.getClientId())
-            .queryParam("access_token", authToken.getAccessToken())
-            .build();
+                .queryParam("client_key", config.getClientId())
+                .queryParam("access_token", authToken.getAccessToken())
+                .build();
     }
 
     /**

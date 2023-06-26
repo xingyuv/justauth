@@ -38,7 +38,7 @@ public class StringUtils {
     /**
      * 编码字符串
      *
-     * @param str 字符串
+     * @param str     字符串
      * @param charset 字符集，如果此字段为空，则解码的结果取决于平台
      * @return 编码后的字节码
      */
@@ -56,7 +56,7 @@ public class StringUtils {
     /**
      * 解码字节码
      *
-     * @param data 字符串
+     * @param data    字符串
      * @param charset 字符集，如果此字段为空，则解码的结果取决于平台
      * @return 解码后的字符串
      */

@@ -29,14 +29,16 @@
 
 
 
-`JustAuth`, as you see, It is just a Java library of third-party authorized login, It's smaller and easier to use. JustAuth is the best third-party login tool written in JAVA.
+`JustAuth`, as you see, It is just a Java library of third-party authorized login, It's smaller and easier to use.
+JustAuth is the best third-party login tool written in JAVA.
 
 Source Code：[gitee](https://gitee.com/xingyuv/justauth) | [github](https://github.com/xingyuv/justauth)    
 Docs：[Reference Doc](https://www.justauth.cn)
 
 ## Features
 
-1. **Multiple platform**: Has integrated more than a dozen third-party platforms.([plan](https://gitee.com/xingyuv/justauth/issues/IUGRK))
+1. **Multiple platform**: Has integrated more than a dozen third-party
+   platforms.([plan](https://gitee.com/xingyuv/justauth/issues/IUGRK))
 2. **Minimalist**: The minimalist design is very simple to use.
 
 ## Quick start
@@ -46,6 +48,7 @@ Docs：[Reference Doc](https://www.justauth.cn)
 - Add JustAuth dependency
 
 These artifacts are available from Maven Central:
+
 ```xml
 <dependency>
     <groupId>com.xingyuv</groupId>
@@ -58,10 +61,11 @@ These artifacts are available from Maven Central:
 > - CURRENT: ![](https://img.shields.io/github/v/release/justauth/justauth?style=flat-square)
 > - SNAPSHOT: ![](https://img.shields.io/nexus/s/https/oss.sonatype.org/me.zhyd.oauth/justauth.svg?style=flat-square)
 
-
 - Add http dependency（Only need one）
-  
-> If there is already in the project, please ignore it. In addition, you need to pay special attention. If the low version of the dependency has been introduced in the project, please exclude the low version of the dependency first, and then introduce the high version or the latest version of the dependency
+
+> If there is already in the project, please ignore it. In addition, you need to pay special attention. If the low
+> version of the dependency has been introduced in the project, please exclude the low version of the dependency first,
+> and then introduce the high version or the latest version of the dependency
 
 - hutool-http
 
@@ -92,7 +96,6 @@ These artifacts are available from Maven Central:
     <version>4.4.1</version>
   </dependency>
   ```
-
 
 ### Using JustAuth API
 
@@ -166,7 +169,6 @@ AuthRequest authRequest = AuthRequestBuilder.builder()
 
 I look forward to your joining us.
 
-
 ## Contributors
 
 [contributors](https://www.justauth.cn/contributors.html)
@@ -177,9 +179,12 @@ I look forward to your joining us.
 
 ## Recommend
 
-- `spring-boot-demo` In-depth study and actual combat of spring boot projects: [https://github.com/xkcoding/spring-boot-demo](https://github.com/xkcoding/spring-boot-demo)
-- `mica` Efficient Development of scaffolding by Spring Cloud: [https://github.com/lets-mica/mica](https://github.com/lets-mica/mica)
-- `pig` Cosmic strongest Micro Services Certified authorized scaffolding (essential for Architects): [https://gitee.com/log4j/pig](https://gitee.com/log4j/pig)
+- `spring-boot-demo` In-depth study and actual combat of spring boot
+  projects: [https://github.com/xkcoding/spring-boot-demo](https://github.com/xkcoding/spring-boot-demo)
+- `mica` Efficient Development of scaffolding by Spring
+  Cloud: [https://github.com/lets-mica/mica](https://github.com/lets-mica/mica)
+- `pig` Cosmic strongest Micro Services Certified authorized scaffolding (essential for
+  Architects): [https://gitee.com/log4j/pig](https://gitee.com/log4j/pig)
 - `SpringBlade` Complete online solution (necessary for enterprise development): https://gitee.com/smallc/SpringBlade
 
 ## References

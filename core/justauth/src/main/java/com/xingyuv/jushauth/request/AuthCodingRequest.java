@@ -35,10 +35,10 @@ public class AuthCodingRequest extends AuthDefaultRequest {
         JSONObject accessTokenObject = JSONObject.parseObject(response);
         this.checkResponse(accessTokenObject);
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .build();
     }
 
     @Override
@@ -49,20 +49,20 @@ public class AuthCodingRequest extends AuthDefaultRequest {
 
         object = object.getJSONObject("data");
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("id"))
-            .username(object.getString("name"))
-            .avatar("https://coding.net" + object.getString("avatar"))
-            .blog("https://coding.net" + object.getString("path"))
-            .nickname(object.getString("name"))
-            .company(object.getString("company"))
-            .location(object.getString("location"))
-            .gender(AuthUserGender.getRealGender(object.getString("sex")))
-            .email(object.getString("email"))
-            .remark(object.getString("slogan"))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("id"))
+                .username(object.getString("name"))
+                .avatar("https://coding.net" + object.getString("avatar"))
+                .blog("https://coding.net" + object.getString("path"))
+                .nickname(object.getString("name"))
+                .company(object.getString("company"))
+                .location(object.getString("location"))
+                .gender(AuthUserGender.getRealGender(object.getString("sex")))
+                .email(object.getString("email"))
+                .remark(object.getString("slogan"))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -86,12 +86,12 @@ public class AuthCodingRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(String.format(source.authorize(), config.getDomainPrefix()))
-            .queryParam("response_type", "code")
-            .queryParam("client_id", config.getClientId())
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthCodingScope.values())))
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("response_type", "code")
+                .queryParam("client_id", config.getClientId())
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthCodingScope.values())))
+                .queryParam("state", getRealState(state))
+                .build();
     }
 
     /**
@@ -103,12 +103,12 @@ public class AuthCodingRequest extends AuthDefaultRequest {
     @Override
     public String accessTokenUrl(String code) {
         return UrlBuilder.fromBaseUrl(String.format(source.accessToken(), config.getDomainPrefix()))
-            .queryParam("code", code)
-            .queryParam("client_id", config.getClientId())
-            .queryParam("client_secret", config.getClientSecret())
-            .queryParam("grant_type", "authorization_code")
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .build();
+                .queryParam("code", code)
+                .queryParam("client_id", config.getClientId())
+                .queryParam("client_secret", config.getClientSecret())
+                .queryParam("grant_type", "authorization_code")
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .build();
     }
 
     /**
@@ -120,7 +120,7 @@ public class AuthCodingRequest extends AuthDefaultRequest {
     @Override
     public String userInfoUrl(AuthToken authToken) {
         return UrlBuilder.fromBaseUrl(String.format(source.userInfo(), config.getDomainPrefix()))
-            .queryParam("access_token", authToken.getAccessToken())
-            .build();
+                .queryParam("access_token", authToken.getAccessToken())
+                .build();
     }
 }

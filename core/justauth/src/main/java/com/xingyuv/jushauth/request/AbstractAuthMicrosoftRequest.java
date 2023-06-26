@@ -1,6 +1,8 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xingyuv.http.support.HttpHeader;
+import com.xingyuv.http.util.MapUtil;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthSource;
@@ -15,8 +17,6 @@ import com.xingyuv.jushauth.model.AuthUser;
 import com.xingyuv.jushauth.utils.AuthScopeUtils;
 import com.xingyuv.jushauth.utils.HttpUtils;
 import com.xingyuv.jushauth.utils.UrlBuilder;
-import com.xkcoding.http.support.HttpHeader;
-import com.xkcoding.http.util.MapUtil;
 
 import java.util.Map;
 
@@ -59,12 +59,12 @@ public abstract class AbstractAuthMicrosoftRequest extends AuthDefaultRequest {
         this.checkResponse(accessTokenObject);
 
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .scope(accessTokenObject.getString("scope"))
-            .tokenType(accessTokenObject.getString("token_type"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .scope(accessTokenObject.getString("scope"))
+                .tokenType(accessTokenObject.getString("token_type"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .build();
     }
 
     /**
@@ -91,16 +91,16 @@ public abstract class AbstractAuthMicrosoftRequest extends AuthDefaultRequest {
         JSONObject object = JSONObject.parseObject(userInfo);
         this.checkResponse(object);
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("id"))
-            .username(object.getString("userPrincipalName"))
-            .nickname(object.getString("displayName"))
-            .location(object.getString("officeLocation"))
-            .email(object.getString("mail"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("id"))
+                .username(object.getString("userPrincipalName"))
+                .nickname(object.getString("displayName"))
+                .location(object.getString("officeLocation"))
+                .email(object.getString("mail"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -112,9 +112,9 @@ public abstract class AbstractAuthMicrosoftRequest extends AuthDefaultRequest {
     @Override
     public AuthResponse refresh(AuthToken authToken) {
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(getToken(refreshTokenUrl(authToken.getRefreshToken())))
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(getToken(refreshTokenUrl(authToken.getRefreshToken())))
+                .build();
     }
 
     /**
@@ -127,9 +127,9 @@ public abstract class AbstractAuthMicrosoftRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(super.authorize(state))
-            .queryParam("response_mode", "query")
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthMicrosoftScope.values())))
-            .build();
+                .queryParam("response_mode", "query")
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthMicrosoftScope.values())))
+                .build();
     }
 
     /**
@@ -141,13 +141,13 @@ public abstract class AbstractAuthMicrosoftRequest extends AuthDefaultRequest {
     @Override
     protected String accessTokenUrl(String code) {
         return UrlBuilder.fromBaseUrl(source.accessToken())
-            .queryParam("code", code)
-            .queryParam("client_id", config.getClientId())
-            .queryParam("client_secret", config.getClientSecret())
-            .queryParam("grant_type", "authorization_code")
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthMicrosoftScope.values())))
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .build();
+                .queryParam("code", code)
+                .queryParam("client_id", config.getClientId())
+                .queryParam("client_secret", config.getClientSecret())
+                .queryParam("grant_type", "authorization_code")
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthMicrosoftScope.values())))
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .build();
     }
 
     /**
@@ -170,12 +170,12 @@ public abstract class AbstractAuthMicrosoftRequest extends AuthDefaultRequest {
     @Override
     protected String refreshTokenUrl(String refreshToken) {
         return UrlBuilder.fromBaseUrl(source.refresh())
-            .queryParam("client_id", config.getClientId())
-            .queryParam("client_secret", config.getClientSecret())
-            .queryParam("refresh_token", refreshToken)
-            .queryParam("grant_type", "refresh_token")
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthMicrosoftScope.values())))
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .build();
+                .queryParam("client_id", config.getClientId())
+                .queryParam("client_secret", config.getClientSecret())
+                .queryParam("refresh_token", refreshToken)
+                .queryParam("grant_type", "refresh_token")
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthMicrosoftScope.values())))
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .build();
     }
 }

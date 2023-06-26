@@ -45,12 +45,12 @@ public class AuthProginnRequest extends AuthDefaultRequest {
         JSONObject accessTokenObject = JSONObject.parseObject(response);
         this.checkResponse(accessTokenObject);
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .uid(accessTokenObject.getString("uid"))
-            .tokenType(accessTokenObject.getString("token_type"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .uid(accessTokenObject.getString("uid"))
+                .tokenType(accessTokenObject.getString("token_type"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .build();
     }
 
     @Override
@@ -59,16 +59,16 @@ public class AuthProginnRequest extends AuthDefaultRequest {
         JSONObject object = JSONObject.parseObject(userInfo);
         this.checkResponse(object);
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("uid"))
-            .username(object.getString("nickname"))
-            .nickname(object.getString("nickname"))
-            .avatar(object.getString("avatar"))
-            .email(object.getString("email"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("uid"))
+                .username(object.getString("nickname"))
+                .nickname(object.getString("nickname"))
+                .avatar(object.getString("avatar"))
+                .email(object.getString("email"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -91,7 +91,7 @@ public class AuthProginnRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(super.authorize(state))
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthProginnScope.values())))
-            .build();
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthProginnScope.values())))
+                .build();
     }
 }

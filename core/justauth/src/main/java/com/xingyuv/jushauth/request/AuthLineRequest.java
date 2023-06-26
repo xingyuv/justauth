@@ -1,7 +1,7 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xkcoding.http.support.HttpHeader;
+import com.xingyuv.http.support.HttpHeader;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
@@ -46,32 +46,32 @@ public class AuthLineRequest extends AuthDefaultRequest {
         String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), params, false).getBody();
         JSONObject accessTokenObject = JSONObject.parseObject(response);
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .idToken(accessTokenObject.getString("id_token"))
-            .scope(accessTokenObject.getString("scope"))
-            .tokenType(accessTokenObject.getString("token_type"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .idToken(accessTokenObject.getString("id_token"))
+                .scope(accessTokenObject.getString("scope"))
+                .tokenType(accessTokenObject.getString("token_type"))
+                .build();
     }
 
     @Override
     protected AuthUser getUserInfo(AuthToken authToken) {
         String userInfo = new HttpUtils(config.getHttpConfig()).get(source.userInfo(), null, new HttpHeader()
-            .add("Content-Type", "application/x-www-form-urlencoded")
-            .add("Authorization", "Bearer ".concat(authToken.getAccessToken())), false).getBody();
+                .add("Content-Type", "application/x-www-form-urlencoded")
+                .add("Authorization", "Bearer ".concat(authToken.getAccessToken())), false).getBody();
         JSONObject object = JSONObject.parseObject(userInfo);
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("userId"))
-            .username(object.getString("displayName"))
-            .nickname(object.getString("displayName"))
-            .avatar(object.getString("pictureUrl"))
-            .remark(object.getString("statusMessage"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("userId"))
+                .username(object.getString("displayName"))
+                .nickname(object.getString("displayName"))
+                .avatar(object.getString("pictureUrl"))
+                .remark(object.getString("statusMessage"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     @Override
@@ -97,30 +97,30 @@ public class AuthLineRequest extends AuthDefaultRequest {
         String response = new HttpUtils(config.getHttpConfig()).post(source.accessToken(), params, false).getBody();
         JSONObject accessTokenObject = JSONObject.parseObject(response);
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(AuthToken.builder()
-                .accessToken(accessTokenObject.getString("access_token"))
-                .refreshToken(accessTokenObject.getString("refresh_token"))
-                .expireIn(accessTokenObject.getIntValue("expires_in"))
-                .idToken(accessTokenObject.getString("id_token"))
-                .scope(accessTokenObject.getString("scope"))
-                .tokenType(accessTokenObject.getString("token_type"))
-                .build())
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(AuthToken.builder()
+                        .accessToken(accessTokenObject.getString("access_token"))
+                        .refreshToken(accessTokenObject.getString("refresh_token"))
+                        .expireIn(accessTokenObject.getIntValue("expires_in"))
+                        .idToken(accessTokenObject.getString("id_token"))
+                        .scope(accessTokenObject.getString("scope"))
+                        .tokenType(accessTokenObject.getString("token_type"))
+                        .build())
+                .build();
     }
 
     @Override
     public String userInfoUrl(AuthToken authToken) {
         return UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("user", authToken.getUid())
-            .build();
+                .queryParam("user", authToken.getUid())
+                .build();
     }
 
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(super.authorize(state))
-            .queryParam("nonce", state)
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthLineScope.values())))
-            .build();
+                .queryParam("nonce", state)
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthLineScope.values())))
+                .build();
     }
 }

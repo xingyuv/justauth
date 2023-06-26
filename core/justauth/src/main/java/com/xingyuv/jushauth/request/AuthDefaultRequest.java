@@ -1,7 +1,7 @@
 package com.xingyuv.jushauth.request;
 
-import com.xingyuv.jushauth.utils.*;
-import com.xkcoding.http.util.UrlUtil;
+import com.alibaba.fastjson.JSON;
+import com.xingyuv.http.util.UrlUtil;
 import com.xingyuv.jushauth.cache.AuthDefaultStateCache;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
@@ -13,6 +13,7 @@ import com.xingyuv.jushauth.model.AuthCallback;
 import com.xingyuv.jushauth.model.AuthResponse;
 import com.xingyuv.jushauth.model.AuthToken;
 import com.xingyuv.jushauth.model.AuthUser;
+import com.xingyuv.jushauth.utils.*;
 
 import java.util.List;
 
@@ -61,6 +62,33 @@ public abstract class AuthDefaultRequest implements AuthRequest {
      * @see AuthDefaultRequest#getAccessToken(AuthCallback)
      */
     protected abstract AuthUser getUserInfo(AuthToken authToken);
+
+    @Override
+    public AuthResponse authToken(AuthCallback authCallback) {
+        try {
+            checkCode(authCallback);
+            if (!config.isIgnoreCheckState()) {
+                AuthChecker.checkState(authCallback.getState(), source, authStateCache);
+            }
+            return AuthResponse.builder().code(AuthResponseStatus.SUCCESS.getCode()).data(this.getAccessToken(authCallback)).build();
+        } catch (Exception e) {
+            Log.error("Failed get auth token.", e);
+            return this.responseError(e);
+        }
+    }
+
+    @Override
+    public AuthResponse userInfo(AuthToken authToken) {
+        try {
+            //先刷新token，再获取信息
+            //this.refresh(authToken);
+            AuthUser user = this.getUserInfo(authToken);
+            return AuthResponse.builder().code(AuthResponseStatus.SUCCESS.getCode()).data(user).build();
+        } catch (Exception e) {
+            Log.error("Failed get userInfo.", e);
+            return this.responseError(e);
+        }
+    }
 
     /**
      * 统一的登录入口。当通过{@link AuthDefaultRequest#authorize(String)}授权成功后，会跳转到调用方的相关回调方法中
@@ -134,11 +162,11 @@ public abstract class AuthDefaultRequest implements AuthRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("response_type", "code")
-            .queryParam("client_id", config.getClientId())
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("response_type", "code")
+                .queryParam("client_id", config.getClientId())
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("state", getRealState(state))
+                .build();
     }
 
     /**
@@ -149,12 +177,12 @@ public abstract class AuthDefaultRequest implements AuthRequest {
      */
     protected String accessTokenUrl(String code) {
         return UrlBuilder.fromBaseUrl(source.accessToken())
-            .queryParam("code", code)
-            .queryParam("client_id", config.getClientId())
-            .queryParam("client_secret", config.getClientSecret())
-            .queryParam("grant_type", "authorization_code")
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .build();
+                .queryParam("code", code)
+                .queryParam("client_id", config.getClientId())
+                .queryParam("client_secret", config.getClientSecret())
+                .queryParam("grant_type", "authorization_code")
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .build();
     }
 
     /**
@@ -165,12 +193,12 @@ public abstract class AuthDefaultRequest implements AuthRequest {
      */
     protected String refreshTokenUrl(String refreshToken) {
         return UrlBuilder.fromBaseUrl(source.refresh())
-            .queryParam("client_id", config.getClientId())
-            .queryParam("client_secret", config.getClientSecret())
-            .queryParam("refresh_token", refreshToken)
-            .queryParam("grant_type", "refresh_token")
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .build();
+                .queryParam("client_id", config.getClientId())
+                .queryParam("client_secret", config.getClientSecret())
+                .queryParam("refresh_token", refreshToken)
+                .queryParam("grant_type", "refresh_token")
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .build();
     }
 
     /**
@@ -293,6 +321,18 @@ public abstract class AuthDefaultRequest implements AuthRequest {
         }
         String scopeStr = String.join(separator, scopes);
         return encode ? UrlUtil.urlEncode(scopeStr) : scopeStr;
+    }
+
+    /**
+     * 获取一个AuthConfig的拷贝
+     *
+     * @return AuthConfig
+     */
+    public AuthConfig copyConfig() {
+        if (config == null) {
+            return null;
+        }
+        return JSON.parseObject(JSON.toJSONString(config), AuthConfig.class);
     }
 
 }

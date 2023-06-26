@@ -41,7 +41,6 @@ public class AuthHuaweiRequest extends AuthDefaultRequest {
      *
      * @param authCallback 授权成功后的回调参数
      * @return token
-     * @see AuthDefaultRequest#authorize()
      * @see AuthDefaultRequest#authorize(String)
      */
     @Override
@@ -80,15 +79,15 @@ public class AuthHuaweiRequest extends AuthDefaultRequest {
         AuthUserGender gender = getRealGender(object);
 
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("userID"))
-            .username(object.getString("userName"))
-            .nickname(object.getString("userName"))
-            .gender(gender)
-            .avatar(object.getString("headPictureURL"))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("userID"))
+                .username(object.getString("userName"))
+                .nickname(object.getString("userName"))
+                .gender(gender)
+                .avatar(object.getString("headPictureURL"))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -115,10 +114,10 @@ public class AuthHuaweiRequest extends AuthDefaultRequest {
         this.checkResponse(object);
 
         return AuthToken.builder()
-            .accessToken(object.getString("access_token"))
-            .expireIn(object.getIntValue("expires_in"))
-            .refreshToken(object.getString("refresh_token"))
-            .build();
+                .accessToken(object.getString("access_token"))
+                .expireIn(object.getIntValue("expires_in"))
+                .refreshToken(object.getString("refresh_token"))
+                .build();
     }
 
     /**
@@ -131,9 +130,9 @@ public class AuthHuaweiRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(super.authorize(state))
-            .queryParam("access_type", "offline")
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthHuaweiScope.values())))
-            .build();
+                .queryParam("access_type", "offline")
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthHuaweiScope.values())))
+                .build();
     }
 
     /**
@@ -145,11 +144,11 @@ public class AuthHuaweiRequest extends AuthDefaultRequest {
     @Override
     protected String userInfoUrl(AuthToken authToken) {
         return UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("nsp_ts", System.currentTimeMillis())
-            .queryParam("access_token", authToken.getAccessToken())
-            .queryParam("nsp_fmt", "JS")
-            .queryParam("nsp_svc", "OpenUP.User.getInfo")
-            .build();
+                .queryParam("nsp_ts", System.currentTimeMillis())
+                .queryParam("access_token", authToken.getAccessToken())
+                .queryParam("nsp_fmt", "JS")
+                .queryParam("nsp_svc", "OpenUP.User.getInfo")
+                .build();
     }
 
     /**

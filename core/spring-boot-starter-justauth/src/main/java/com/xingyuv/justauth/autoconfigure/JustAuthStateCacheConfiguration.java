@@ -17,10 +17,10 @@
 
 package com.xingyuv.justauth.autoconfigure;
 
-import com.xingyuv.justauth.support.cache.RedisStateCache;
-import lombok.extern.slf4j.Slf4j;
 import com.xingyuv.jushauth.cache.AuthDefaultStateCache;
 import com.xingyuv.jushauth.cache.AuthStateCache;
+import com.xingyuv.justauth.support.cache.RedisStateCache;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

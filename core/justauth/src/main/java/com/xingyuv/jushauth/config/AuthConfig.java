@@ -1,11 +1,11 @@
 package com.xingyuv.jushauth.config;
 
+import com.xingyuv.http.config.HttpConfig;
+import com.xingyuv.jushauth.model.AuthCallback;
 import com.xingyuv.jushauth.request.AuthDefaultRequest;
 import com.xingyuv.jushauth.utils.AuthChecker;
-import com.xkcoding.http.config.HttpConfig;
-import lombok.*;
-import com.xingyuv.jushauth.model.AuthCallback;
 import com.xingyuv.jushauth.utils.StringUtils;
+import lombok.*;
 
 import java.util.List;
 

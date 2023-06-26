@@ -17,11 +17,11 @@
 
 package com.xingyuv.justauth.autoconfigure;
 
-import lombok.Getter;
-import lombok.Setter;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthSource;
 import com.xingyuv.jushauth.request.AuthRequest;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;

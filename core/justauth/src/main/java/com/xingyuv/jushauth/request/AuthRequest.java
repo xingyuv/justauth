@@ -44,6 +44,26 @@ public interface AuthRequest {
     }
 
     /**
+     * 获取授权token
+     *
+     * @param authCallback 用于接收回调参数的实体
+     * @return 返回登录成功后的token信息
+     */
+    default AuthResponse authToken(AuthCallback authCallback) {
+        throw new AuthException(AuthResponseStatus.NOT_IMPLEMENTED);
+    }
+
+    /**
+     * 获取用户信息
+     *
+     * @param authToken 授权token信息
+     * @return 返回登录成功后的用户信息
+     */
+    default AuthResponse userInfo(AuthToken authToken) {
+        throw new AuthException(AuthResponseStatus.NOT_IMPLEMENTED);
+    }
+
+    /**
      * 第三方登录
      *
      * @param authCallback 用于接收回调参数的实体

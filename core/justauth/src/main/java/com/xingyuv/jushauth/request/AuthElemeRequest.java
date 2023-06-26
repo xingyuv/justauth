@@ -1,9 +1,8 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xingyuv.jushauth.utils.HttpUtils;
-import com.xkcoding.http.constants.Constants;
-import com.xkcoding.http.support.HttpHeader;
+import com.xingyuv.http.constants.Constants;
+import com.xingyuv.http.support.HttpHeader;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
@@ -14,10 +13,7 @@ import com.xingyuv.jushauth.model.AuthCallback;
 import com.xingyuv.jushauth.model.AuthResponse;
 import com.xingyuv.jushauth.model.AuthToken;
 import com.xingyuv.jushauth.model.AuthUser;
-import com.xingyuv.jushauth.utils.Base64Utils;
-import com.xingyuv.jushauth.utils.GlobalAuthUtils;
-import com.xingyuv.jushauth.utils.UrlBuilder;
-import com.xingyuv.jushauth.utils.UuidUtils;
+import com.xingyuv.jushauth.utils.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,11 +54,11 @@ public class AuthElemeRequest extends AuthDefaultRequest {
         this.checkResponse(object);
 
         return AuthToken.builder()
-            .accessToken(object.getString("access_token"))
-            .refreshToken(object.getString("refresh_token"))
-            .tokenType(object.getString("token_type"))
-            .expireIn(object.getIntValue("expires_in"))
-            .build();
+                .accessToken(object.getString("access_token"))
+                .refreshToken(object.getString("refresh_token"))
+                .tokenType(object.getString("token_type"))
+                .expireIn(object.getIntValue("expires_in"))
+                .build();
     }
 
     @Override
@@ -77,7 +73,7 @@ public class AuthElemeRequest extends AuthDefaultRequest {
         metasHashMap.put("app_key", config.getClientId());
         metasHashMap.put("timestamp", timestamp);
         String signature = GlobalAuthUtils.generateElemeSignature(config.getClientId(), config.getClientSecret(), timestamp, action, authToken
-            .getAccessToken(), parameters);
+                .getAccessToken(), parameters);
 
         String requestId = this.getRequestId();
 
@@ -106,14 +102,14 @@ public class AuthElemeRequest extends AuthDefaultRequest {
         JSONObject result = object.getJSONObject("result");
 
         return AuthUser.builder()
-            .rawUserInfo(result)
-            .uuid(result.getString("userId"))
-            .username(result.getString("userName"))
-            .nickname(result.getString("userName"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(result)
+                .uuid(result.getString("userId"))
+                .username(result.getString("userName"))
+                .nickname(result.getString("userName"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     @Override
@@ -130,14 +126,14 @@ public class AuthElemeRequest extends AuthDefaultRequest {
         this.checkResponse(object);
 
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(AuthToken.builder()
-                .accessToken(object.getString("access_token"))
-                .refreshToken(object.getString("refresh_token"))
-                .tokenType(object.getString("token_type"))
-                .expireIn(object.getIntValue("expires_in"))
-                .build())
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(AuthToken.builder()
+                        .accessToken(object.getString("access_token"))
+                        .refreshToken(object.getString("refresh_token"))
+                        .tokenType(object.getString("token_type"))
+                        .expireIn(object.getIntValue("expires_in"))
+                        .build())
+                .build();
     }
 
     @Override

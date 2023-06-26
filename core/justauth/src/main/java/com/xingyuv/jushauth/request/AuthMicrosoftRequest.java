@@ -8,7 +8,7 @@ import com.xingyuv.jushauth.config.AuthDefaultSource;
  * 微软登录
  *
  * @author yangkai.shen (https://xkcoding.com)
- * @update:2021-08-24  mroldx (xzfqq5201314@gmail.com)
+ * @update:2021-08-24 mroldx (xzfqq5201314@gmail.com)
  * @since 1.5.0
  */
 public class AuthMicrosoftRequest extends AbstractAuthMicrosoftRequest {

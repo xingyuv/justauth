@@ -17,9 +17,9 @@
 
 package com.xingyuv.justauth.autoconfigure;
 
+import com.xingyuv.jushauth.config.AuthConfig;
 import lombok.Getter;
 import lombok.Setter;
-import com.xingyuv.jushauth.config.AuthConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 

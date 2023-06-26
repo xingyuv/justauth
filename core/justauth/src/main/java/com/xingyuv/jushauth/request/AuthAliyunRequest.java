@@ -30,12 +30,12 @@ public class AuthAliyunRequest extends AuthDefaultRequest {
         String response = doPostAuthorizationCode(authCallback.getCode());
         JSONObject accessTokenObject = JSONObject.parseObject(response);
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .tokenType(accessTokenObject.getString("token_type"))
-            .idToken(accessTokenObject.getString("id_token"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .tokenType(accessTokenObject.getString("token_type"))
+                .idToken(accessTokenObject.getString("id_token"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .build();
     }
 
     @Override
@@ -43,14 +43,14 @@ public class AuthAliyunRequest extends AuthDefaultRequest {
         String userInfo = doGetUserInfo(authToken);
         JSONObject object = JSONObject.parseObject(userInfo);
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("sub"))
-            .username(object.getString("login_name"))
-            .nickname(object.getString("name"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("sub"))
+                .username(object.getString("login_name"))
+                .nickname(object.getString("name"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
 }

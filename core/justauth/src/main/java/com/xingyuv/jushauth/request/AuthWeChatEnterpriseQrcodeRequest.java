@@ -27,10 +27,10 @@ public class AuthWeChatEnterpriseQrcodeRequest extends AbstractAuthWeChatEnterpr
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("appid", config.getClientId())
-            .queryParam("agentid", config.getAgentId())
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("appid", config.getClientId())
+                .queryParam("agentid", config.getAgentId())
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("state", getRealState(state))
+                .build();
     }
 }

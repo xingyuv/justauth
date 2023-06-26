@@ -77,11 +77,11 @@ public class Log {
         }
         stackTrace = stackTraceArr[offset];
         return stackTrace.getClassName() +
-            "(" +
-            stackTrace.getMethodName() +
-            ':' +
-            stackTrace.getLineNumber() +
-            ")";
+                "(" +
+                stackTrace.getMethodName() +
+                ':' +
+                stackTrace.getLineNumber() +
+                ")";
     }
 
     /**

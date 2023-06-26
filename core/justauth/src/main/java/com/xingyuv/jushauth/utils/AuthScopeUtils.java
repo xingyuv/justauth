@@ -26,9 +26,9 @@ public class AuthScopeUtils {
             return null;
         }
         return Arrays.stream(scopes)
-            .filter((AuthScope::isDefault))
-            .map(AuthScope::getScope)
-            .collect(Collectors.toList());
+                .filter((AuthScope::isDefault))
+                .map(AuthScope::getScope)
+                .collect(Collectors.toList());
     }
 
     /**

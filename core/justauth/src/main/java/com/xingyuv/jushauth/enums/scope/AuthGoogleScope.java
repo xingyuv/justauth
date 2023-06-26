@@ -288,33 +288,33 @@ public enum AuthGoogleScope implements AuthScope {
 
     public static List<String> getAdminDirectoryScopes() {
         return Arrays.stream(new AuthGoogleScope[]{
-            ADMIN_DIRECTORY_USERSCHEMA_READONLY,
-            ADMIN_DIRECTORY_USERSCHEMA,
-            ADMIN_DIRECTORY_USER_SECURITY,
-            ADMIN_DIRECTORY_USER_READONLY,
-            ADMIN_DIRECTORY_USER_ALIAS_READONLY,
-            ADMIN_DIRECTORY_USER_ALIAS,
-            ADMIN_DIRECTORY_USER,
-            ADMIN_DIRECTORY_ROLEMANAGEMENT_READONLY,
-            ADMIN_DIRECTORY_ROLEMANAGEMENT,
-            ADMIN_DIRECTORY_RESOURCE_CALENDAR_READONLY,
-            ADMIN_DIRECTORY_RESOURCE_CALENDAR,
-            ADMIN_DIRECTORY_ORGUNIT_READONLY,
-            ADMIN_DIRECTORY_ORGUNIT,
-            ADMIN_DIRECTORY_NOTIFICATIONS,
-            ADMIN_DIRECTORY_GROUP_READONLY,
-            ADMIN_DIRECTORY_GROUP_MEMBER_READONLY,
-            ADMIN_DIRECTORY_GROUP_MEMBER,
-            ADMIN_DIRECTORY_GROUP,
-            ADMIN_DIRECTORY_DOMAIN_READONLY,
-            ADMIN_DIRECTORY_DOMAIN,
-            ADMIN_DIRECTORY_DEVICE_MOBILE_READONLY,
-            ADMIN_DIRECTORY_DEVICE_MOBILE_ACTION,
-            ADMIN_DIRECTORY_DEVICE_MOBILE,
-            ADMIN_DIRECTORY_DEVICE_CHROMEOS_READONLY,
-            ADMIN_DIRECTORY_DEVICE_CHROMEOS,
-            ADMIN_DIRECTORY_CUSTOMER_READONLY,
-            ADMIN_DIRECTORY_CUSTOMER
+                ADMIN_DIRECTORY_USERSCHEMA_READONLY,
+                ADMIN_DIRECTORY_USERSCHEMA,
+                ADMIN_DIRECTORY_USER_SECURITY,
+                ADMIN_DIRECTORY_USER_READONLY,
+                ADMIN_DIRECTORY_USER_ALIAS_READONLY,
+                ADMIN_DIRECTORY_USER_ALIAS,
+                ADMIN_DIRECTORY_USER,
+                ADMIN_DIRECTORY_ROLEMANAGEMENT_READONLY,
+                ADMIN_DIRECTORY_ROLEMANAGEMENT,
+                ADMIN_DIRECTORY_RESOURCE_CALENDAR_READONLY,
+                ADMIN_DIRECTORY_RESOURCE_CALENDAR,
+                ADMIN_DIRECTORY_ORGUNIT_READONLY,
+                ADMIN_DIRECTORY_ORGUNIT,
+                ADMIN_DIRECTORY_NOTIFICATIONS,
+                ADMIN_DIRECTORY_GROUP_READONLY,
+                ADMIN_DIRECTORY_GROUP_MEMBER_READONLY,
+                ADMIN_DIRECTORY_GROUP_MEMBER,
+                ADMIN_DIRECTORY_GROUP,
+                ADMIN_DIRECTORY_DOMAIN_READONLY,
+                ADMIN_DIRECTORY_DOMAIN,
+                ADMIN_DIRECTORY_DEVICE_MOBILE_READONLY,
+                ADMIN_DIRECTORY_DEVICE_MOBILE_ACTION,
+                ADMIN_DIRECTORY_DEVICE_MOBILE,
+                ADMIN_DIRECTORY_DEVICE_CHROMEOS_READONLY,
+                ADMIN_DIRECTORY_DEVICE_CHROMEOS,
+                ADMIN_DIRECTORY_CUSTOMER_READONLY,
+                ADMIN_DIRECTORY_CUSTOMER
         }).map(AuthGoogleScope::getScope).collect(Collectors.toList());
     }
 
@@ -325,20 +325,20 @@ public enum AuthGoogleScope implements AuthScope {
      */
     public static List<String> getGmailScopes() {
         return Arrays.stream(new AuthGoogleScope[]{
-            GMAIL,
-            GMAIL_SETTINGS_SHARING,
-            GMAIL_SETTINGS_BASIC,
-            GMAIL_SEND,
-            GMAIL_READONLY,
-            GMAIL_MODIFY,
-            GMAIL_METADATA,
-            GMAIL_LABELS,
-            GMAIL_INSERT,
-            GMAIL_COMPOSE,
-            GMAIL_ADDONS_CURRENT_MESSAGE_READONLY,
-            GMAIL_ADDONS_CURRENT_MESSAGE_METADATA,
-            GMAIL_ADDONS_CURRENT_MESSAGE_ACTION,
-            GMAIL_ADDONS_CURRENT_ACTION_COMPOSE
+                GMAIL,
+                GMAIL_SETTINGS_SHARING,
+                GMAIL_SETTINGS_BASIC,
+                GMAIL_SEND,
+                GMAIL_READONLY,
+                GMAIL_MODIFY,
+                GMAIL_METADATA,
+                GMAIL_LABELS,
+                GMAIL_INSERT,
+                GMAIL_COMPOSE,
+                GMAIL_ADDONS_CURRENT_MESSAGE_READONLY,
+                GMAIL_ADDONS_CURRENT_MESSAGE_METADATA,
+                GMAIL_ADDONS_CURRENT_MESSAGE_ACTION,
+                GMAIL_ADDONS_CURRENT_ACTION_COMPOSE
         }).map(AuthGoogleScope::getScope).collect(Collectors.toList());
     }
 
@@ -350,9 +350,9 @@ public enum AuthGoogleScope implements AuthScope {
      */
     public static List<String> getOidcScopes() {
         return Arrays.stream(new AuthGoogleScope[]{
-            USER_OPENID,
-            USER_EMAIL,
-            USER_PROFILE
+                USER_OPENID,
+                USER_EMAIL,
+                USER_PROFILE
         }).map(AuthGoogleScope::getScope).collect(Collectors.toList());
     }
 
@@ -363,19 +363,19 @@ public enum AuthGoogleScope implements AuthScope {
      */
     public static List<String> getPeopleScopes() {
         return Arrays.stream(new AuthGoogleScope[]{
-            CONTACTS_READONLY,
-            CONTACTS_OTHER_READONLY,
-            CONTACTS,
-            CONTACTS_FEEDS,
-            DIRECTORY_READONLY,
-            USER_PHONENUMBERS_READ,
-            USER_ORGANIZATION_READ,
-            USER_GENDER_READ,
-            USER_EMAILS_READ,
-            USER_BIRTHDAY_READ,
-            USER_ADDRESSES_READ,
-            USERINFO_PROFILE,
-            USERINFO_EMAIL
+                CONTACTS_READONLY,
+                CONTACTS_OTHER_READONLY,
+                CONTACTS,
+                CONTACTS_FEEDS,
+                DIRECTORY_READONLY,
+                USER_PHONENUMBERS_READ,
+                USER_ORGANIZATION_READ,
+                USER_GENDER_READ,
+                USER_EMAILS_READ,
+                USER_BIRTHDAY_READ,
+                USER_ADDRESSES_READ,
+                USERINFO_PROFILE,
+                USERINFO_EMAIL
         }).map(AuthGoogleScope::getScope).collect(Collectors.toList());
     }
 
@@ -387,11 +387,11 @@ public enum AuthGoogleScope implements AuthScope {
      */
     public static List<String> getPhotosLibraryScopes() {
         return Arrays.stream(new AuthGoogleScope[]{
-            PHOTOSLIBRARY_SHARING,
-            PHOTOSLIBRARY_READONLY_APPCREATEDDATA,
-            PHOTOSLIBRARY_READONLY,
-            PHOTOSLIBRARY_APPENDONLY,
-            PHOTOSLIBRARY
+                PHOTOSLIBRARY_SHARING,
+                PHOTOSLIBRARY_READONLY_APPCREATEDDATA,
+                PHOTOSLIBRARY_READONLY,
+                PHOTOSLIBRARY_APPENDONLY,
+                PHOTOSLIBRARY
         }).map(AuthGoogleScope::getScope).collect(Collectors.toList());
     }
 
@@ -402,15 +402,15 @@ public enum AuthGoogleScope implements AuthScope {
      */
     public static List<String> getYouTubeScopes() {
         return Arrays.stream(new AuthGoogleScope[]{
-            YT_ANALYTICS_READONLY,
-            YT_ANALYTICS_MONETARY_READONLY,
-            YOUTUBEPARTNER_CHANNEL_AUDIT,
-            YOUTUBEPARTNER,
-            YOUTUBE_UPLOAD,
-            YOUTUBE_READONLY,
-            YOUTUBE_FORCE_SSL,
-            YOUTUBE_CHANNEL_MEMBERSHIPS_CREATOR,
-            YOUTUBE
+                YT_ANALYTICS_READONLY,
+                YT_ANALYTICS_MONETARY_READONLY,
+                YOUTUBEPARTNER_CHANNEL_AUDIT,
+                YOUTUBEPARTNER,
+                YOUTUBE_UPLOAD,
+                YOUTUBE_READONLY,
+                YOUTUBE_FORCE_SSL,
+                YOUTUBE_CHANNEL_MEMBERSHIPS_CREATOR,
+                YOUTUBE
         }).map(AuthGoogleScope::getScope).collect(Collectors.toList());
     }
 
@@ -421,13 +421,13 @@ public enum AuthGoogleScope implements AuthScope {
      */
     public static List<String> getGoogleAnalyticsScopes() {
         return Arrays.stream(new AuthGoogleScope[]{
-            ANALYTICS_USER_DELETION,
-            ANALYTICS_READONLY,
-            ANALYTICS_PROVISION,
-            ANALYTICS_MANAGE_USERS_READONLY,
-            ANALYTICS_MANAGE_USERS,
-            ANALYTICS_EDIT,
-            ANALYTICS
+                ANALYTICS_USER_DELETION,
+                ANALYTICS_READONLY,
+                ANALYTICS_PROVISION,
+                ANALYTICS_MANAGE_USERS_READONLY,
+                ANALYTICS_MANAGE_USERS,
+                ANALYTICS_EDIT,
+                ANALYTICS
         }).map(AuthGoogleScope::getScope).collect(Collectors.toList());
     }
 
@@ -438,12 +438,12 @@ public enum AuthGoogleScope implements AuthScope {
      */
     public static List<String> getCalendarScopes() {
         return Arrays.stream(new AuthGoogleScope[]{
-            CALENDAR_SETTINGS_READONLY,
-            CALENDAR_READONLY,
-            CALENDAR_EVENTS_READONLY,
-            CALENDAR_EVENTS,
-            CALENDAR,
-            CALENDAR_FEEDS
+                CALENDAR_SETTINGS_READONLY,
+                CALENDAR_READONLY,
+                CALENDAR_EVENTS_READONLY,
+                CALENDAR_EVENTS,
+                CALENDAR,
+                CALENDAR_FEEDS
         }).map(AuthGoogleScope::getScope).collect(Collectors.toList());
     }
 
@@ -454,17 +454,17 @@ public enum AuthGoogleScope implements AuthScope {
      */
     public static List<String> getDriveScopes() {
         return Arrays.stream(new AuthGoogleScope[]{
-            DRIVE_SCRIPTS,
-            DRIVE_READONLY,
-            DRIVE_PHOTOS_READONLY,
-            DRIVE_METADATA_READONLY,
-            DRIVE_METADATA,
-            DRIVE_FILE,
-            DRIVE_APPDATA,
-            DRIVE_ACTIVITY_READONLY,
-            DRIVE_ACTIVITY,
-            DRIVE,
-            ACTIVITY
+                DRIVE_SCRIPTS,
+                DRIVE_READONLY,
+                DRIVE_PHOTOS_READONLY,
+                DRIVE_METADATA_READONLY,
+                DRIVE_METADATA,
+                DRIVE_FILE,
+                DRIVE_APPDATA,
+                DRIVE_ACTIVITY_READONLY,
+                DRIVE_ACTIVITY,
+                DRIVE,
+                ACTIVITY
         }).map(AuthGoogleScope::getScope).collect(Collectors.toList());
     }
 

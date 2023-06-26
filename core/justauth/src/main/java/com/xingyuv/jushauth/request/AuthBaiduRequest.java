@@ -53,16 +53,16 @@ public class AuthBaiduRequest extends AuthDefaultRequest {
         JSONObject object = JSONObject.parseObject(userInfo);
         this.checkResponse(object);
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.containsKey("userid") ? object.getString("userid") : object.getString("openid"))
-            .username(object.getString("username"))
-            .nickname(object.getString("username"))
-            .avatar(getAvatar(object))
-            .remark(object.getString("userdetail"))
-            .gender(AuthUserGender.getRealGender(object.getString("sex")))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.containsKey("userid") ? object.getString("userid") : object.getString("openid"))
+                .username(object.getString("username"))
+                .nickname(object.getString("username"))
+                .avatar(getAvatar(object))
+                .remark(object.getString("userdetail"))
+                .gender(AuthUserGender.getRealGender(object.getString("sex")))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     private String getAvatar(JSONObject object) {
@@ -83,16 +83,16 @@ public class AuthBaiduRequest extends AuthDefaultRequest {
     @Override
     public AuthResponse refresh(AuthToken authToken) {
         String refreshUrl = UrlBuilder.fromBaseUrl(this.source.refresh())
-            .queryParam("grant_type", "refresh_token")
-            .queryParam("refresh_token", authToken.getRefreshToken())
-            .queryParam("client_id", this.config.getClientId())
-            .queryParam("client_secret", this.config.getClientSecret())
-            .build();
+                .queryParam("grant_type", "refresh_token")
+                .queryParam("refresh_token", authToken.getRefreshToken())
+                .queryParam("client_id", this.config.getClientId())
+                .queryParam("client_secret", this.config.getClientSecret())
+                .build();
         String response = new HttpUtils(config.getHttpConfig()).get(refreshUrl).getBody();
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(this.getAuthToken(response))
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(this.getAuthToken(response))
+                .build();
     }
 
     /**
@@ -105,9 +105,9 @@ public class AuthBaiduRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(super.authorize(state))
-            .queryParam("display", "popup")
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthBaiduScope.values())))
-            .build();
+                .queryParam("display", "popup")
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthBaiduScope.values())))
+                .build();
     }
 
     /**
@@ -126,10 +126,10 @@ public class AuthBaiduRequest extends AuthDefaultRequest {
         JSONObject accessTokenObject = JSONObject.parseObject(response);
         this.checkResponse(accessTokenObject);
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .scope(accessTokenObject.getString("scope"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .scope(accessTokenObject.getString("scope"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .build();
     }
 }

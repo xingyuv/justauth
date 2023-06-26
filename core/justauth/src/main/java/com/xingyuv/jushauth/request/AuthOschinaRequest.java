@@ -5,11 +5,11 @@ import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
 import com.xingyuv.jushauth.enums.AuthUserGender;
+import com.xingyuv.jushauth.exception.AuthException;
 import com.xingyuv.jushauth.model.AuthCallback;
 import com.xingyuv.jushauth.model.AuthToken;
 import com.xingyuv.jushauth.model.AuthUser;
 import com.xingyuv.jushauth.utils.UrlBuilder;
-import com.xingyuv.jushauth.exception.AuthException;
 
 /**
  * oschina登录
@@ -33,11 +33,11 @@ public class AuthOschinaRequest extends AuthDefaultRequest {
         JSONObject accessTokenObject = JSONObject.parseObject(response);
         this.checkResponse(accessTokenObject);
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .uid(accessTokenObject.getString("uid"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .uid(accessTokenObject.getString("uid"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .build();
     }
 
     @Override
@@ -46,18 +46,18 @@ public class AuthOschinaRequest extends AuthDefaultRequest {
         JSONObject object = JSONObject.parseObject(response);
         this.checkResponse(object);
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("id"))
-            .username(object.getString("name"))
-            .nickname(object.getString("name"))
-            .avatar(object.getString("avatar"))
-            .blog(object.getString("url"))
-            .location(object.getString("location"))
-            .gender(AuthUserGender.getRealGender(object.getString("gender")))
-            .email(object.getString("email"))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("id"))
+                .username(object.getString("name"))
+                .nickname(object.getString("name"))
+                .avatar(object.getString("avatar"))
+                .blog(object.getString("url"))
+                .location(object.getString("location"))
+                .gender(AuthUserGender.getRealGender(object.getString("gender")))
+                .email(object.getString("email"))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -69,13 +69,13 @@ public class AuthOschinaRequest extends AuthDefaultRequest {
     @Override
     protected String accessTokenUrl(String code) {
         return UrlBuilder.fromBaseUrl(source.accessToken())
-            .queryParam("code", code)
-            .queryParam("client_id", config.getClientId())
-            .queryParam("client_secret", config.getClientSecret())
-            .queryParam("grant_type", "authorization_code")
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("dataType", "json")
-            .build();
+                .queryParam("code", code)
+                .queryParam("client_id", config.getClientId())
+                .queryParam("client_secret", config.getClientSecret())
+                .queryParam("grant_type", "authorization_code")
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("dataType", "json")
+                .build();
     }
 
     /**
@@ -87,9 +87,9 @@ public class AuthOschinaRequest extends AuthDefaultRequest {
     @Override
     protected String userInfoUrl(AuthToken authToken) {
         return UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("access_token", authToken.getAccessToken())
-            .queryParam("dataType", "json")
-            .build();
+                .queryParam("access_token", authToken.getAccessToken())
+                .queryParam("dataType", "json")
+                .build();
     }
 
     /**

@@ -1,10 +1,10 @@
 package com.xingyuv.jushauth.config;
 
-import com.xingyuv.jushauth.request.AuthDefaultRequest;
-import com.xingyuv.jushauth.request.AuthRequest;
 import com.xingyuv.jushauth.enums.AuthResponseStatus;
 import com.xingyuv.jushauth.exception.AuthException;
 import com.xingyuv.jushauth.model.AuthCallback;
+import com.xingyuv.jushauth.request.AuthDefaultRequest;
+import com.xingyuv.jushauth.request.AuthRequest;
 
 /**
  * OAuth平台的API地址的统一接口，提供以下方法：

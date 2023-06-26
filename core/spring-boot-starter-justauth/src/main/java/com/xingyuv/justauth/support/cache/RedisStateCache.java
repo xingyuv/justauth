@@ -17,9 +17,9 @@
 
 package com.xingyuv.justauth.support.cache;
 
+import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.justauth.autoconfigure.CacheProperties;
 import lombok.RequiredArgsConstructor;
-import com.xingyuv.jushauth.cache.AuthStateCache;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.concurrent.TimeUnit;

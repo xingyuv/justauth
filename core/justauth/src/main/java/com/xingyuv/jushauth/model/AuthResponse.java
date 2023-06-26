@@ -1,7 +1,7 @@
 package com.xingyuv.jushauth.model;
 
-import lombok.*;
 import com.xingyuv.jushauth.enums.AuthResponseStatus;
+import lombok.*;
 
 import java.io.Serializable;
 

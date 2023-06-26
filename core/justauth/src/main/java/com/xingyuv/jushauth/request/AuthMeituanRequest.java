@@ -47,10 +47,10 @@ public class AuthMeituanRequest extends AuthDefaultRequest {
         this.checkResponse(object);
 
         return AuthToken.builder()
-            .accessToken(object.getString("access_token"))
-            .refreshToken(object.getString("refresh_token"))
-            .expireIn(object.getIntValue("expires_in"))
-            .build();
+                .accessToken(object.getString("access_token"))
+                .refreshToken(object.getString("refresh_token"))
+                .expireIn(object.getIntValue("expires_in"))
+                .build();
     }
 
     @Override
@@ -66,15 +66,15 @@ public class AuthMeituanRequest extends AuthDefaultRequest {
         this.checkResponse(object);
 
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("openid"))
-            .username(object.getString("nickname"))
-            .nickname(object.getString("nickname"))
-            .avatar(object.getString("avatar"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("openid"))
+                .username(object.getString("nickname"))
+                .nickname(object.getString("nickname"))
+                .avatar(object.getString("avatar"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     @Override
@@ -91,13 +91,13 @@ public class AuthMeituanRequest extends AuthDefaultRequest {
         this.checkResponse(object);
 
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(AuthToken.builder()
-                .accessToken(object.getString("access_token"))
-                .refreshToken(object.getString("refresh_token"))
-                .expireIn(object.getIntValue("expires_in"))
-                .build())
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(AuthToken.builder()
+                        .accessToken(object.getString("access_token"))
+                        .refreshToken(object.getString("refresh_token"))
+                        .expireIn(object.getIntValue("expires_in"))
+                        .build())
+                .build();
     }
 
     private void checkResponse(JSONObject object) {
@@ -109,8 +109,8 @@ public class AuthMeituanRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(super.authorize(state))
-            .queryParam("scope", "")
-            .build();
+                .queryParam("scope", "")
+                .build();
     }
 
 }

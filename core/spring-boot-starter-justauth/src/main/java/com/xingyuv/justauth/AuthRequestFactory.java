@@ -21,18 +21,18 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.xingyuv.jushauth.request.*;
-import com.xingyuv.justauth.autoconfigure.ExtendProperties;
-import com.xingyuv.justauth.autoconfigure.JustAuthProperties;
-import com.xkcoding.http.config.HttpConfig;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import com.xingyuv.http.config.HttpConfig;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
 import com.xingyuv.jushauth.config.AuthSource;
 import com.xingyuv.jushauth.enums.AuthResponseStatus;
 import com.xingyuv.jushauth.exception.AuthException;
+import com.xingyuv.jushauth.request.*;
+import com.xingyuv.justauth.autoconfigure.ExtendProperties;
+import com.xingyuv.justauth.autoconfigure.JustAuthProperties;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
 import java.net.InetSocketAddress;
@@ -74,11 +74,11 @@ public class AuthRequestFactory {
             List<String> names = EnumUtil.getNames(enumClass);
             // 扩展列表
             extendList = extend.getConfig()
-                .keySet()
-                .stream()
-                .filter(x -> names.contains(x.toUpperCase()))
-                .map(String::toUpperCase)
-                .collect(Collectors.toList());
+                    .keySet()
+                    .stream()
+                    .filter(x -> names.contains(x.toUpperCase()))
+                    .map(String::toUpperCase)
+                    .collect(Collectors.toList());
         }
 
         // 合并
@@ -286,8 +286,8 @@ public class AuthRequestFactory {
         }
 
         authConfig.setHttpConfig(HttpConfig.builder()
-            .timeout(httpConfig.getTimeout())
-            .proxy(new Proxy(Proxy.Type.valueOf(proxyConfig.getType()), new InetSocketAddress(proxyConfig.getHostname(), proxyConfig.getPort())))
-            .build());
+                .timeout(httpConfig.getTimeout())
+                .proxy(new Proxy(Proxy.Type.valueOf(proxyConfig.getType()), new InetSocketAddress(proxyConfig.getHostname(), proxyConfig.getPort())))
+                .build());
     }
 }

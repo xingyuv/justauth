@@ -1,7 +1,7 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xkcoding.http.support.HttpHeader;
+import com.xingyuv.http.support.HttpHeader;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
@@ -42,10 +42,10 @@ public class AuthGithubRequest extends AuthDefaultRequest {
         this.checkResponse(res.containsKey("error"), res.get("error_description"));
 
         return AuthToken.builder()
-            .accessToken(res.get("access_token"))
-            .scope(res.get("scope"))
-            .tokenType(res.get("token_type"))
-            .build();
+                .accessToken(res.get("access_token"))
+                .scope(res.get("scope"))
+                .tokenType(res.get("token_type"))
+                .build();
     }
 
     @Override
@@ -58,20 +58,20 @@ public class AuthGithubRequest extends AuthDefaultRequest {
         this.checkResponse(object.containsKey("error"), object.getString("error_description"));
 
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("id"))
-            .username(object.getString("login"))
-            .avatar(object.getString("avatar_url"))
-            .blog(object.getString("blog"))
-            .nickname(object.getString("name"))
-            .company(object.getString("company"))
-            .location(object.getString("location"))
-            .email(object.getString("email"))
-            .remark(object.getString("bio"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("id"))
+                .username(object.getString("login"))
+                .avatar(object.getString("avatar_url"))
+                .blog(object.getString("blog"))
+                .nickname(object.getString("name"))
+                .company(object.getString("company"))
+                .location(object.getString("location"))
+                .email(object.getString("email"))
+                .remark(object.getString("bio"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     private void checkResponse(boolean error, String errorDescription) {
@@ -89,8 +89,8 @@ public class AuthGithubRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(super.authorize(state))
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthGithubScope.values())))
-            .build();
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthGithubScope.values())))
+                .build();
     }
 
 }

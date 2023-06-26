@@ -96,13 +96,13 @@ public class AuthAlipayRequest extends AuthDefaultRequest {
         this.alipayPublicKey = determineAlipayPublicKey(alipayPublicKey, config);
         check(config);
         if (config.getHttpConfig() != null && config.getHttpConfig().getProxy() != null
-            && config.getHttpConfig().getProxy().address() instanceof InetSocketAddress) {
+                && config.getHttpConfig().getProxy().address() instanceof InetSocketAddress) {
             InetSocketAddress address = (InetSocketAddress) config.getHttpConfig().getProxy().address();
             this.alipayClient = new DefaultAlipayClient(GATEWAY, config.getClientId(), config.getClientSecret(),
-                "json", "UTF-8", this.alipayPublicKey, "RSA2", address.getHostName(), address.getPort());
+                    "json", "UTF-8", this.alipayPublicKey, "RSA2", address.getHostName(), address.getPort());
         } else {
             this.alipayClient = new DefaultAlipayClient(GATEWAY, config.getClientId(), config.getClientSecret(),
-                "json", "UTF-8", this.alipayPublicKey, "RSA2");
+                    "json", "UTF-8", this.alipayPublicKey, "RSA2");
         }
     }
 
@@ -118,7 +118,7 @@ public class AuthAlipayRequest extends AuthDefaultRequest {
         this.alipayPublicKey = determineAlipayPublicKey(alipayPublicKey, config);
         check(config);
         this.alipayClient = new DefaultAlipayClient(GATEWAY, config.getClientId(), config.getClientSecret(),
-            "json", "UTF-8", this.alipayPublicKey, "RSA2", proxyHost, proxyPort);
+                "json", "UTF-8", this.alipayPublicKey, "RSA2", proxyHost, proxyPort);
     }
 
     private String determineAlipayPublicKey(String alipayPublicKey, AuthConfig config) {
@@ -161,11 +161,11 @@ public class AuthAlipayRequest extends AuthDefaultRequest {
             throw new AuthException(response.getSubMsg());
         }
         return AuthToken.builder()
-            .accessToken(response.getAccessToken())
-            .uid(response.getUserId())
-            .expireIn(Integer.parseInt(response.getExpiresIn()))
-            .refreshToken(response.getRefreshToken())
-            .build();
+                .accessToken(response.getAccessToken())
+                .uid(response.getUserId())
+                .expireIn(Integer.parseInt(response.getExpiresIn()))
+                .refreshToken(response.getRefreshToken())
+                .build();
     }
 
     /**
@@ -189,14 +189,14 @@ public class AuthAlipayRequest extends AuthDefaultRequest {
             throw new AuthException(response.getSubMsg());
         }
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(AuthToken.builder()
-                .accessToken(response.getAccessToken())
-                .uid(response.getUserId())
-                .expireIn(Integer.parseInt(response.getExpiresIn()))
-                .refreshToken(response.getRefreshToken())
-                .build())
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(AuthToken.builder()
+                        .accessToken(response.getAccessToken())
+                        .uid(response.getUserId())
+                        .expireIn(Integer.parseInt(response.getExpiresIn()))
+                        .refreshToken(response.getRefreshToken())
+                        .build())
+                .build();
     }
 
     @Override
@@ -217,16 +217,16 @@ public class AuthAlipayRequest extends AuthDefaultRequest {
         String location = String.format("%s %s", StringUtils.isEmpty(province) ? "" : province, StringUtils.isEmpty(city) ? "" : city);
 
         return AuthUser.builder()
-            .rawUserInfo(JSONObject.parseObject(JSONObject.toJSONString(response)))
-            .uuid(response.getUserId())
-            .username(StringUtils.isEmpty(response.getUserName()) ? response.getNickName() : response.getUserName())
-            .nickname(response.getNickName())
-            .avatar(response.getAvatar())
-            .location(location)
-            .gender(AuthUserGender.getRealGender(response.getGender()))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(JSONObject.parseObject(JSONObject.toJSONString(response)))
+                .uuid(response.getUserId())
+                .username(StringUtils.isEmpty(response.getUserName()) ? response.getNickName() : response.getUserName())
+                .nickname(response.getNickName())
+                .avatar(response.getAvatar())
+                .location(location)
+                .gender(AuthUserGender.getRealGender(response.getGender()))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -239,10 +239,10 @@ public class AuthAlipayRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("app_id", config.getClientId())
-            .queryParam("scope", "auth_user")
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("app_id", config.getClientId())
+                .queryParam("scope", "auth_user")
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("state", getRealState(state))
+                .build();
     }
 }

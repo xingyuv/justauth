@@ -1,8 +1,9 @@
 package com.xingyuv.jushauth.model;
 
 import com.alibaba.fastjson.JSONObject;
-import lombok.*;
 import com.xingyuv.jushauth.enums.AuthUserGender;
+import lombok.*;
+
 import java.io.Serializable;
 
 /**

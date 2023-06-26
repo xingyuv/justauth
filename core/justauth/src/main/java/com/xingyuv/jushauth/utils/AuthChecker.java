@@ -1,12 +1,12 @@
 package com.xingyuv.jushauth.utils;
 
+import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
 import com.xingyuv.jushauth.config.AuthSource;
-import com.xingyuv.jushauth.model.AuthCallback;
-import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.enums.AuthResponseStatus;
 import com.xingyuv.jushauth.exception.AuthException;
+import com.xingyuv.jushauth.model.AuthCallback;
 
 /**
  * 授权配置类的校验器
@@ -26,7 +26,7 @@ public class AuthChecker {
      */
     public static boolean isSupportedAuth(AuthConfig config, AuthSource source) {
         boolean isSupported = StringUtils.isNotEmpty(config.getClientId())
-            && StringUtils.isNotEmpty(config.getClientSecret());
+                && StringUtils.isNotEmpty(config.getClientSecret());
         if (isSupported && AuthDefaultSource.STACK_OVERFLOW == source) {
             isSupported = StringUtils.isNotEmpty(config.getStackOverflowKey());
         }

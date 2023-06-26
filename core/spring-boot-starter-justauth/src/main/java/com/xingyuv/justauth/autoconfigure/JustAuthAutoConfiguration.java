@@ -17,9 +17,9 @@
 
 package com.xingyuv.justauth.autoconfigure;
 
+import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.justauth.AuthRequestFactory;
 import lombok.extern.slf4j.Slf4j;
-import com.xingyuv.jushauth.cache.AuthStateCache;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

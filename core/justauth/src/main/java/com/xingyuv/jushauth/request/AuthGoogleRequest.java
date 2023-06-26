@@ -1,8 +1,7 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xingyuv.jushauth.utils.HttpUtils;
-import com.xkcoding.http.support.HttpHeader;
+import com.xingyuv.http.support.HttpHeader;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
@@ -13,6 +12,7 @@ import com.xingyuv.jushauth.model.AuthCallback;
 import com.xingyuv.jushauth.model.AuthToken;
 import com.xingyuv.jushauth.model.AuthUser;
 import com.xingyuv.jushauth.utils.AuthScopeUtils;
+import com.xingyuv.jushauth.utils.HttpUtils;
 import com.xingyuv.jushauth.utils.UrlBuilder;
 
 /**
@@ -37,12 +37,12 @@ public class AuthGoogleRequest extends AuthDefaultRequest {
         JSONObject accessTokenObject = JSONObject.parseObject(response);
         this.checkResponse(accessTokenObject);
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .scope(accessTokenObject.getString("scope"))
-            .tokenType(accessTokenObject.getString("token_type"))
-            .idToken(accessTokenObject.getString("id_token"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .scope(accessTokenObject.getString("scope"))
+                .tokenType(accessTokenObject.getString("token_type"))
+                .idToken(accessTokenObject.getString("id_token"))
+                .build();
     }
 
     @Override
@@ -53,17 +53,17 @@ public class AuthGoogleRequest extends AuthDefaultRequest {
         JSONObject object = JSONObject.parseObject(userInfo);
         this.checkResponse(object);
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("sub"))
-            .username(object.getString("email"))
-            .avatar(object.getString("picture"))
-            .nickname(object.getString("name"))
-            .location(object.getString("locale"))
-            .email(object.getString("email"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("sub"))
+                .username(object.getString("email"))
+                .avatar(object.getString("picture"))
+                .nickname(object.getString("name"))
+                .location(object.getString("locale"))
+                .email(object.getString("email"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -76,10 +76,10 @@ public class AuthGoogleRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(super.authorize(state))
-            .queryParam("access_type", "offline")
-            .queryParam("scope", this.getScopes(" ", false, AuthScopeUtils.getDefaultScopes(AuthGoogleScope.values())))
-            .queryParam("prompt","select_account")
-            .build();
+                .queryParam("access_type", "offline")
+                .queryParam("scope", this.getScopes(" ", false, AuthScopeUtils.getDefaultScopes(AuthGoogleScope.values())))
+                .queryParam("prompt", "select_account")
+                .build();
     }
 
     /**

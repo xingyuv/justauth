@@ -57,7 +57,8 @@ public enum AuthOktaScope implements AuthScope {
     OKTA_TRUSTEDORIGINS_MANAGE("okta.trustedOrigins.manage", "Allows the app to manage all Trusted Origins in your Okta organization", false),
     OKTA_TRUSTEDORIGINS_READ("okta.trustedOrigins.read", "Allows the app to read all Trusted Origins in your Okta organization", false),
     OKTA_POLICIES_MANAGE("okta.policies.manage", "Allows the app to manage Policies in your Okta organization", false),
-    OKTA_POLICIES_READ("okta.policies.read", "Allows the app to read information about Policies in your Okta organization", false),;
+    OKTA_POLICIES_READ("okta.policies.read", "Allows the app to read information about Policies in your Okta organization", false),
+    ;
 
     private final String scope;
     private final String description;

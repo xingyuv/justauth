@@ -5,7 +5,7 @@ import lombok.Getter;
 
 /**
  * 抖音平台 OAuth 授权范围
- *
+ * <p>
  * https://open.douyin.com/platform/doc/6855240178122983437
  *
  * @author yadong.zhang (yadong.zhang0415(a)gmail.com)

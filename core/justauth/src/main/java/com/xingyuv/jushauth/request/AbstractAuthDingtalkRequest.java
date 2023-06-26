@@ -50,18 +50,18 @@ public abstract class AbstractAuthDingtalkRequest extends AuthDefaultRequest {
         }
         object = object.getJSONObject("user_info");
         AuthToken token = AuthToken.builder()
-            .openId(object.getString("openid"))
-            .unionId(object.getString("unionid"))
-            .build();
+                .openId(object.getString("openid"))
+                .unionId(object.getString("unionid"))
+                .build();
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("unionid"))
-            .nickname(object.getString("nick"))
-            .username(object.getString("nick"))
-            .gender(AuthUserGender.UNKNOWN)
-            .source(source.toString())
-            .token(token)
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("unionid"))
+                .nickname(object.getString("nick"))
+                .username(object.getString("nick"))
+                .gender(AuthUserGender.UNKNOWN)
+                .source(source.toString())
+                .token(token)
+                .build();
     }
 
     /**
@@ -74,12 +74,12 @@ public abstract class AbstractAuthDingtalkRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("response_type", "code")
-            .queryParam("appid", config.getClientId())
-            .queryParam("scope", "snsapi_login")
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("response_type", "code")
+                .queryParam("appid", config.getClientId())
+                .queryParam("scope", "snsapi_login")
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("state", getRealState(state))
+                .build();
     }
 
     /**
@@ -95,10 +95,10 @@ public abstract class AbstractAuthDingtalkRequest extends AuthDefaultRequest {
         String urlEncodeSignature = GlobalAuthUtils.generateDingTalkSignature(config.getClientSecret(), timestamp);
 
         return UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("signature", urlEncodeSignature)
-            .queryParam("timestamp", timestamp)
-            .queryParam("accessKey", config.getClientId())
-            .build();
+                .queryParam("signature", urlEncodeSignature)
+                .queryParam("timestamp", timestamp)
+                .queryParam("accessKey", config.getClientId())
+                .build();
     }
 
 }

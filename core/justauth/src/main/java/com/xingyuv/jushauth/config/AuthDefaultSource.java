@@ -1,8 +1,8 @@
 package com.xingyuv.jushauth.config;
 
-import com.xingyuv.jushauth.request.*;
 import com.xingyuv.jushauth.enums.AuthResponseStatus;
 import com.xingyuv.jushauth.exception.AuthException;
+import com.xingyuv.jushauth.request.*;
 
 /**
  * JustAuth内置的各api需要的url， 用枚举类分平台类型管理
@@ -309,7 +309,7 @@ public enum AuthDefaultSource implements AuthSource {
 
         @Override
         public String accessToken() {
-            return "https://api.weixin.qq.com/sns/oauth2/access_token";
+            return "https://api.weixin.qq.com/sns/jscode2session";
         }
 
         @Override
@@ -540,7 +540,9 @@ public enum AuthDefaultSource implements AuthSource {
         }
 
         @Override
-        public Class<? extends AuthDefaultRequest> getTargetClass() { return AuthMicrosoftCnRequest.class; }
+        public Class<? extends AuthDefaultRequest> getTargetClass() {
+            return AuthMicrosoftCnRequest.class;
+        }
     },
     /**
      * 小米

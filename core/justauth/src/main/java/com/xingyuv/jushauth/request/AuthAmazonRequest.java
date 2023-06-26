@@ -1,6 +1,9 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xingyuv.http.constants.Constants;
+import com.xingyuv.http.support.HttpHeader;
+import com.xingyuv.http.util.UrlUtil;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
@@ -16,9 +19,6 @@ import com.xingyuv.jushauth.utils.AuthScopeUtils;
 import com.xingyuv.jushauth.utils.HttpUtils;
 import com.xingyuv.jushauth.utils.PkceUtil;
 import com.xingyuv.jushauth.utils.UrlBuilder;
-import com.xkcoding.http.constants.Constants;
-import com.xkcoding.http.support.HttpHeader;
-import com.xkcoding.http.util.UrlUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,11 +51,11 @@ public class AuthAmazonRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         UrlBuilder builder = UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("client_id", config.getClientId())
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthAmazonScope.values())))
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("response_type", "code")
-            .queryParam("state", getRealState(state));
+                .queryParam("client_id", config.getClientId())
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthAmazonScope.values())))
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("response_type", "code")
+                .queryParam("state", getRealState(state));
 
         if (config.isPkce()) {
             String cacheKey = this.source.getName().concat(":code_verifier:").concat(config.getClientId());
@@ -63,7 +63,7 @@ public class AuthAmazonRequest extends AuthDefaultRequest {
             String codeChallengeMethod = "S256";
             String codeChallenge = PkceUtil.generateCodeChallenge(codeChallengeMethod, codeVerifier);
             builder.queryParam("code_challenge", codeChallenge)
-                .queryParam("code_challenge_method", codeChallengeMethod);
+                    .queryParam("code_challenge_method", codeChallengeMethod);
             // 缓存 codeVerifier 十分钟
             this.authStateCache.cache(cacheKey, codeVerifier, TimeUnit.MINUTES.toMillis(10));
         }
@@ -101,9 +101,9 @@ public class AuthAmazonRequest extends AuthDefaultRequest {
         form.put("client_id", config.getClientId());
         form.put("client_secret", config.getClientSecret());
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(getToken(form, this.source.refresh()))
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(getToken(form, this.source.refresh()))
+                .build();
 
     }
 
@@ -115,11 +115,11 @@ public class AuthAmazonRequest extends AuthDefaultRequest {
         JSONObject jsonObject = JSONObject.parseObject(response);
         this.checkResponse(jsonObject);
         return AuthToken.builder()
-            .accessToken(jsonObject.getString("access_token"))
-            .tokenType(jsonObject.getString("token_type"))
-            .expireIn(jsonObject.getIntValue("expires_in"))
-            .refreshToken(jsonObject.getString("refresh_token"))
-            .build();
+                .accessToken(jsonObject.getString("access_token"))
+                .tokenType(jsonObject.getString("token_type"))
+                .expireIn(jsonObject.getIntValue("expires_in"))
+                .refreshToken(jsonObject.getString("refresh_token"))
+                .build();
     }
 
     /**
@@ -152,15 +152,15 @@ public class AuthAmazonRequest extends AuthDefaultRequest {
         this.checkResponse(jsonObject);
 
         return AuthUser.builder()
-            .rawUserInfo(jsonObject)
-            .uuid(jsonObject.getString("user_id"))
-            .username(jsonObject.getString("name"))
-            .nickname(jsonObject.getString("name"))
-            .email(jsonObject.getString("email"))
-            .gender(AuthUserGender.UNKNOWN)
-            .source(source.toString())
-            .token(authToken)
-            .build();
+                .rawUserInfo(jsonObject)
+                .uuid(jsonObject.getString("user_id"))
+                .username(jsonObject.getString("name"))
+                .nickname(jsonObject.getString("name"))
+                .email(jsonObject.getString("email"))
+                .gender(AuthUserGender.UNKNOWN)
+                .source(source.toString())
+                .token(authToken)
+                .build();
     }
 
     private void checkToken(String accessToken) {
@@ -174,9 +174,9 @@ public class AuthAmazonRequest extends AuthDefaultRequest {
     @Override
     protected String userInfoUrl(AuthToken authToken) {
         return UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("user_id", authToken.getUserId())
-            .queryParam("screen_name", authToken.getScreenName())
-            .queryParam("include_entities", true)
-            .build();
+                .queryParam("user_id", authToken.getUserId())
+                .queryParam("screen_name", authToken.getScreenName())
+                .queryParam("include_entities", true)
+                .build();
     }
 }

@@ -1,9 +1,9 @@
 package com.xingyuv.jushauth.utils;
 
-import com.xkcoding.http.HttpUtil;
-import com.xkcoding.http.config.HttpConfig;
-import com.xkcoding.http.support.HttpHeader;
-import com.xkcoding.http.support.SimpleHttpResponse;
+import com.xingyuv.http.HttpUtil;
+import com.xingyuv.http.config.HttpConfig;
+import com.xingyuv.http.support.HttpHeader;
+import com.xingyuv.http.support.SimpleHttpResponse;
 import com.xingyuv.jushauth.exception.AuthException;
 
 import java.util.Map;

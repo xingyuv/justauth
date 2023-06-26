@@ -1,8 +1,7 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xingyuv.jushauth.utils.HttpUtils;
-import com.xkcoding.http.support.HttpHeader;
+import com.xingyuv.http.support.HttpHeader;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
@@ -13,6 +12,7 @@ import com.xingyuv.jushauth.model.AuthCallback;
 import com.xingyuv.jushauth.model.AuthResponse;
 import com.xingyuv.jushauth.model.AuthToken;
 import com.xingyuv.jushauth.model.AuthUser;
+import com.xingyuv.jushauth.utils.HttpUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,9 +51,9 @@ public class AuthTeambitionRequest extends AuthDefaultRequest {
         this.checkResponse(accessTokenObject);
 
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .build();
     }
 
     @Override
@@ -64,7 +64,7 @@ public class AuthTeambitionRequest extends AuthDefaultRequest {
         httpHeader.add("Authorization", "OAuth2 " + accessToken);
 
         String response = new HttpUtils(config.getHttpConfig())
-            .get(source.userInfo(), null, httpHeader, false).getBody();
+                .get(source.userInfo(), null, httpHeader, false).getBody();
         JSONObject object = JSONObject.parseObject(response);
 
         this.checkResponse(object);
@@ -72,18 +72,18 @@ public class AuthTeambitionRequest extends AuthDefaultRequest {
         authToken.setUid(object.getString("_id"));
 
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("_id"))
-            .username(object.getString("name"))
-            .nickname(object.getString("name"))
-            .avatar(object.getString("avatarUrl"))
-            .blog(object.getString("website"))
-            .location(object.getString("location"))
-            .email(object.getString("email"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("_id"))
+                .username(object.getString("name"))
+                .nickname(object.getString("name"))
+                .avatar(object.getString("avatarUrl"))
+                .blog(object.getString("website"))
+                .location(object.getString("location"))
+                .email(object.getString("email"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     @Override
@@ -100,12 +100,12 @@ public class AuthTeambitionRequest extends AuthDefaultRequest {
         this.checkResponse(refreshTokenObject);
 
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(AuthToken.builder()
-                .accessToken(refreshTokenObject.getString("access_token"))
-                .refreshToken(refreshTokenObject.getString("refresh_token"))
-                .build())
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(AuthToken.builder()
+                        .accessToken(refreshTokenObject.getString("access_token"))
+                        .refreshToken(refreshTokenObject.getString("refresh_token"))
+                        .build())
+                .build();
     }
 
     /**

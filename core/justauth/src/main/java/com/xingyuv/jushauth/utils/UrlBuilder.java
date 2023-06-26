@@ -1,7 +1,7 @@
 package com.xingyuv.jushauth.utils;
 
-import com.xkcoding.http.util.MapUtil;
-import com.xkcoding.http.util.StringUtil;
+import com.xingyuv.http.util.MapUtil;
+import com.xingyuv.http.util.StringUtil;
 import lombok.Setter;
 
 import java.util.Collections;

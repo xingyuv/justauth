@@ -1,7 +1,6 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xingyuv.jushauth.utils.HttpUtils;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
@@ -12,6 +11,7 @@ import com.xingyuv.jushauth.model.AuthCallback;
 import com.xingyuv.jushauth.model.AuthResponse;
 import com.xingyuv.jushauth.model.AuthToken;
 import com.xingyuv.jushauth.model.AuthUser;
+import com.xingyuv.jushauth.utils.HttpUtils;
 import com.xingyuv.jushauth.utils.UrlBuilder;
 
 /**
@@ -56,24 +56,24 @@ public class AuthWeChatOpenRequest extends AuthDefaultRequest {
         }
 
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .username(object.getString("nickname"))
-            .nickname(object.getString("nickname"))
-            .avatar(object.getString("headimgurl"))
-            .location(location)
-            .uuid(openId)
-            .gender(AuthUserGender.getWechatRealGender(object.getString("sex")))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .username(object.getString("nickname"))
+                .nickname(object.getString("nickname"))
+                .avatar(object.getString("headimgurl"))
+                .location(location)
+                .uuid(openId)
+                .gender(AuthUserGender.getWechatRealGender(object.getString("sex")))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     @Override
     public AuthResponse refresh(AuthToken oldToken) {
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(this.getToken(refreshTokenUrl(oldToken.getRefreshToken())))
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(this.getToken(refreshTokenUrl(oldToken.getRefreshToken())))
+                .build();
     }
 
     /**
@@ -100,11 +100,11 @@ public class AuthWeChatOpenRequest extends AuthDefaultRequest {
         this.checkResponse(accessTokenObject);
 
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .openId(accessTokenObject.getString("openid"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .openId(accessTokenObject.getString("openid"))
+                .build();
     }
 
     /**
@@ -117,12 +117,12 @@ public class AuthWeChatOpenRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("response_type", "code")
-            .queryParam("appid", config.getClientId())
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("scope", "snsapi_login")
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("response_type", "code")
+                .queryParam("appid", config.getClientId())
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("scope", "snsapi_login")
+                .queryParam("state", getRealState(state))
+                .build();
     }
 
     /**
@@ -134,11 +134,11 @@ public class AuthWeChatOpenRequest extends AuthDefaultRequest {
     @Override
     protected String accessTokenUrl(String code) {
         return UrlBuilder.fromBaseUrl(source.accessToken())
-            .queryParam("code", code)
-            .queryParam("appid", config.getClientId())
-            .queryParam("secret", config.getClientSecret())
-            .queryParam("grant_type", "authorization_code")
-            .build();
+                .queryParam("code", code)
+                .queryParam("appid", config.getClientId())
+                .queryParam("secret", config.getClientSecret())
+                .queryParam("grant_type", "authorization_code")
+                .build();
     }
 
     /**
@@ -150,10 +150,10 @@ public class AuthWeChatOpenRequest extends AuthDefaultRequest {
     @Override
     protected String userInfoUrl(AuthToken authToken) {
         return UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("access_token", authToken.getAccessToken())
-            .queryParam("openid", authToken.getOpenId())
-            .queryParam("lang", "zh_CN")
-            .build();
+                .queryParam("access_token", authToken.getAccessToken())
+                .queryParam("openid", authToken.getOpenId())
+                .queryParam("lang", "zh_CN")
+                .build();
     }
 
     /**
@@ -165,9 +165,9 @@ public class AuthWeChatOpenRequest extends AuthDefaultRequest {
     @Override
     protected String refreshTokenUrl(String refreshToken) {
         return UrlBuilder.fromBaseUrl(source.refresh())
-            .queryParam("appid", config.getClientId())
-            .queryParam("refresh_token", refreshToken)
-            .queryParam("grant_type", "refresh_token")
-            .build();
+                .queryParam("appid", config.getClientId())
+                .queryParam("refresh_token", refreshToken)
+                .queryParam("grant_type", "refresh_token")
+                .build();
     }
 }

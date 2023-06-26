@@ -5,10 +5,10 @@ import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
 import com.xingyuv.jushauth.config.AuthSource;
 import com.xingyuv.jushauth.enums.AuthResponseStatus;
+import com.xingyuv.jushauth.exception.AuthException;
 import com.xingyuv.jushauth.request.AuthDefaultRequest;
 import com.xingyuv.jushauth.request.AuthRequest;
 import com.xingyuv.jushauth.utils.StringUtils;
-import com.xingyuv.jushauth.exception.AuthException;
 
 import java.util.Arrays;
 import java.util.function.Function;
@@ -68,9 +68,9 @@ public class AuthRequestBuilder {
         AuthSource[] sources = this.concat(AuthDefaultSource.values(), extendSource);
         // 筛选符合条件的 AuthSource
         AuthSource source = Arrays.stream(sources).distinct()
-            .filter(authSource -> authSource.getName().equalsIgnoreCase(this.source))
-            .findAny()
-            .orElseThrow(() -> new AuthException(AuthResponseStatus.NOT_IMPLEMENTED));
+                .filter(authSource -> authSource.getName().equalsIgnoreCase(this.source))
+                .findAny()
+                .orElseThrow(() -> new AuthException(AuthResponseStatus.NOT_IMPLEMENTED));
 
         Class<? extends AuthDefaultRequest> targetClass = source.getTargetClass();
         if (null == targetClass) {

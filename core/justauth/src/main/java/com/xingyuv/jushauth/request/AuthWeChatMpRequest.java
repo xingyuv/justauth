@@ -59,24 +59,24 @@ public class AuthWeChatMpRequest extends AuthDefaultRequest {
         }
 
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .username(object.getString("nickname"))
-            .nickname(object.getString("nickname"))
-            .avatar(object.getString("headimgurl"))
-            .location(location)
-            .uuid(openId)
-            .gender(AuthUserGender.getWechatRealGender(object.getString("sex")))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .username(object.getString("nickname"))
+                .nickname(object.getString("nickname"))
+                .avatar(object.getString("headimgurl"))
+                .location(location)
+                .uuid(openId)
+                .gender(AuthUserGender.getWechatRealGender(object.getString("sex")))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     @Override
     public AuthResponse refresh(AuthToken oldToken) {
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(this.getToken(refreshTokenUrl(oldToken.getRefreshToken())))
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(this.getToken(refreshTokenUrl(oldToken.getRefreshToken())))
+                .build();
     }
 
     /**
@@ -103,12 +103,13 @@ public class AuthWeChatMpRequest extends AuthDefaultRequest {
         this.checkResponse(accessTokenObject);
 
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .openId(accessTokenObject.getString("openid"))
-            .scope(accessTokenObject.getString("scope"))
-            .build();
+                .accessToken(accessTokenObject.getString("session_key"))
+                .refreshToken(accessTokenObject.getString("session_key"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .openId(accessTokenObject.getString("openid"))
+                .unionId(accessTokenObject.getString("unionid"))
+                .scope(accessTokenObject.getString("scope"))
+                .build();
     }
 
     /**
@@ -121,12 +122,12 @@ public class AuthWeChatMpRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("appid", config.getClientId())
-            .queryParam("redirect_uri", GlobalAuthUtils.urlEncode(config.getRedirectUri()))
-            .queryParam("response_type", "code")
-            .queryParam("scope", this.getScopes(",", false, AuthScopeUtils.getDefaultScopes(AuthWechatMpScope.values())))
-            .queryParam("state", getRealState(state).concat("#wechat_redirect"))
-            .build();
+                .queryParam("appid", config.getClientId())
+                .queryParam("redirect_uri", GlobalAuthUtils.urlEncode(config.getRedirectUri()))
+                .queryParam("response_type", "code")
+                .queryParam("scope", this.getScopes(",", false, AuthScopeUtils.getDefaultScopes(AuthWechatMpScope.values())))
+                .queryParam("state", getRealState(state).concat("#wechat_redirect"))
+                .build();
     }
 
     /**
@@ -138,11 +139,11 @@ public class AuthWeChatMpRequest extends AuthDefaultRequest {
     @Override
     protected String accessTokenUrl(String code) {
         return UrlBuilder.fromBaseUrl(source.accessToken())
-            .queryParam("appid", config.getClientId())
-            .queryParam("secret", config.getClientSecret())
-            .queryParam("code", code)
-            .queryParam("grant_type", "authorization_code")
-            .build();
+                .queryParam("appid", config.getClientId())
+                .queryParam("secret", config.getClientSecret())
+                .queryParam("js_code", code)
+                .queryParam("grant_type", "authorization_code")
+                .build();
     }
 
     /**
@@ -154,10 +155,10 @@ public class AuthWeChatMpRequest extends AuthDefaultRequest {
     @Override
     protected String userInfoUrl(AuthToken authToken) {
         return UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("access_token", authToken.getAccessToken())
-            .queryParam("openid", authToken.getOpenId())
-            .queryParam("lang", "zh_CN")
-            .build();
+                .queryParam("access_token", authToken.getAccessToken())
+                .queryParam("openid", authToken.getOpenId())
+                .queryParam("lang", "zh_CN")
+                .build();
     }
 
     /**
@@ -169,9 +170,9 @@ public class AuthWeChatMpRequest extends AuthDefaultRequest {
     @Override
     protected String refreshTokenUrl(String refreshToken) {
         return UrlBuilder.fromBaseUrl(source.refresh())
-            .queryParam("appid", config.getClientId())
-            .queryParam("grant_type", "refresh_token")
-            .queryParam("refresh_token", refreshToken)
-            .build();
+                .queryParam("appid", config.getClientId())
+                .queryParam("grant_type", "refresh_token")
+                .queryParam("refresh_token", refreshToken)
+                .build();
     }
 }

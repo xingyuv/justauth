@@ -24,7 +24,7 @@ public enum AuthProginnScope implements AuthScope {
     email("email", "获取用户的邮箱", false),
     realname("realname", "获取用户的真实姓名", false),
     cellphone("cellphone", "获取用户的手机号码", false),
-   ;
+    ;
 
     private final String scope;
     private final String description;

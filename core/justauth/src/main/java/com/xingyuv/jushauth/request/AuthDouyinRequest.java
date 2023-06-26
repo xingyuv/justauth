@@ -45,25 +45,25 @@ public class AuthDouyinRequest extends AuthDefaultRequest {
         this.checkResponse(userInfoObject);
         JSONObject object = userInfoObject.getJSONObject("data");
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(object.getString("union_id"))
-            .username(object.getString("nickname"))
-            .nickname(object.getString("nickname"))
-            .avatar(object.getString("avatar"))
-            .remark(object.getString("description"))
-            .gender(AuthUserGender.getRealGender(object.getString("gender")))
-            .location(String.format("%s %s %s", object.getString("country"), object.getString("province"), object.getString("city")))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(object.getString("union_id"))
+                .username(object.getString("nickname"))
+                .nickname(object.getString("nickname"))
+                .avatar(object.getString("avatar"))
+                .remark(object.getString("description"))
+                .gender(AuthUserGender.getRealGender(object.getString("gender")))
+                .location(String.format("%s %s %s", object.getString("country"), object.getString("province"), object.getString("city")))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     @Override
     public AuthResponse refresh(AuthToken oldToken) {
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(getToken(refreshTokenUrl(oldToken.getRefreshToken())))
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(getToken(refreshTokenUrl(oldToken.getRefreshToken())))
+                .build();
     }
 
     /**
@@ -92,12 +92,12 @@ public class AuthDouyinRequest extends AuthDefaultRequest {
         this.checkResponse(object);
         JSONObject dataObj = object.getJSONObject("data");
         return AuthToken.builder()
-            .accessToken(dataObj.getString("access_token"))
-            .openId(dataObj.getString("open_id"))
-            .expireIn(dataObj.getIntValue("expires_in"))
-            .refreshToken(dataObj.getString("refresh_token"))
-            .scope(dataObj.getString("scope"))
-            .build();
+                .accessToken(dataObj.getString("access_token"))
+                .openId(dataObj.getString("open_id"))
+                .expireIn(dataObj.getIntValue("expires_in"))
+                .refreshToken(dataObj.getString("refresh_token"))
+                .scope(dataObj.getString("scope"))
+                .build();
     }
 
     /**
@@ -110,12 +110,12 @@ public class AuthDouyinRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("response_type", "code")
-            .queryParam("client_key", config.getClientId())
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("scope", this.getScopes(",", true, AuthScopeUtils.getDefaultScopes(AuthDouyinScope.values())))
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("response_type", "code")
+                .queryParam("client_key", config.getClientId())
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("scope", this.getScopes(",", true, AuthScopeUtils.getDefaultScopes(AuthDouyinScope.values())))
+                .queryParam("state", getRealState(state))
+                .build();
     }
 
     /**
@@ -127,11 +127,11 @@ public class AuthDouyinRequest extends AuthDefaultRequest {
     @Override
     protected String accessTokenUrl(String code) {
         return UrlBuilder.fromBaseUrl(source.accessToken())
-            .queryParam("code", code)
-            .queryParam("client_key", config.getClientId())
-            .queryParam("client_secret", config.getClientSecret())
-            .queryParam("grant_type", "authorization_code")
-            .build();
+                .queryParam("code", code)
+                .queryParam("client_key", config.getClientId())
+                .queryParam("client_secret", config.getClientSecret())
+                .queryParam("grant_type", "authorization_code")
+                .build();
     }
 
     /**
@@ -143,9 +143,9 @@ public class AuthDouyinRequest extends AuthDefaultRequest {
     @Override
     protected String userInfoUrl(AuthToken authToken) {
         return UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("access_token", authToken.getAccessToken())
-            .queryParam("open_id", authToken.getOpenId())
-            .build();
+                .queryParam("access_token", authToken.getAccessToken())
+                .queryParam("open_id", authToken.getOpenId())
+                .build();
     }
 
     /**
@@ -157,9 +157,9 @@ public class AuthDouyinRequest extends AuthDefaultRequest {
     @Override
     protected String refreshTokenUrl(String refreshToken) {
         return UrlBuilder.fromBaseUrl(source.refresh())
-            .queryParam("client_key", config.getClientId())
-            .queryParam("refresh_token", refreshToken)
-            .queryParam("grant_type", "refresh_token")
-            .build();
+                .queryParam("client_key", config.getClientId())
+                .queryParam("refresh_token", refreshToken)
+                .queryParam("grant_type", "refresh_token")
+                .build();
     }
 }

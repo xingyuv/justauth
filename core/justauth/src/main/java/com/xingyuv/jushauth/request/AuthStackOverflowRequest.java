@@ -1,9 +1,9 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xkcoding.http.constants.Constants;
-import com.xkcoding.http.support.HttpHeader;
-import com.xkcoding.http.util.MapUtil;
+import com.xingyuv.http.constants.Constants;
+import com.xingyuv.http.support.HttpHeader;
+import com.xingyuv.http.util.MapUtil;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.enums.AuthUserGender;
@@ -48,34 +48,34 @@ public class AuthStackOverflowRequest extends AuthDefaultRequest {
         this.checkResponse(accessTokenObject);
 
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .expireIn(accessTokenObject.getIntValue("expires"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .expireIn(accessTokenObject.getIntValue("expires"))
+                .build();
     }
 
     @Override
     protected AuthUser getUserInfo(AuthToken authToken) {
         String userInfoUrl = UrlBuilder.fromBaseUrl(this.source.userInfo())
-            .queryParam("access_token", authToken.getAccessToken())
-            .queryParam("site", "stackoverflow")
-            .queryParam("key", this.config.getStackOverflowKey())
-            .build();
+                .queryParam("access_token", authToken.getAccessToken())
+                .queryParam("site", "stackoverflow")
+                .queryParam("key", this.config.getStackOverflowKey())
+                .build();
         String response = new HttpUtils(config.getHttpConfig()).get(userInfoUrl).getBody();
         JSONObject object = JSONObject.parseObject(response);
         this.checkResponse(object);
         JSONObject userObj = object.getJSONArray("items").getJSONObject(0);
 
         return AuthUser.builder()
-            .rawUserInfo(userObj)
-            .uuid(userObj.getString("user_id"))
-            .avatar(userObj.getString("profile_image"))
-            .location(userObj.getString("location"))
-            .nickname(userObj.getString("display_name"))
-            .blog(userObj.getString("website_url"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(userObj)
+                .uuid(userObj.getString("user_id"))
+                .avatar(userObj.getString("profile_image"))
+                .location(userObj.getString("location"))
+                .nickname(userObj.getString("display_name"))
+                .blog(userObj.getString("website_url"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -88,8 +88,8 @@ public class AuthStackOverflowRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(super.authorize(state))
-            .queryParam("scope", this.getScopes(",", false, AuthScopeUtils.getDefaultScopes(AuthStackoverflowScope.values())))
-            .build();
+                .queryParam("scope", this.getScopes(",", false, AuthScopeUtils.getDefaultScopes(AuthStackoverflowScope.values())))
+                .build();
     }
 
     /**

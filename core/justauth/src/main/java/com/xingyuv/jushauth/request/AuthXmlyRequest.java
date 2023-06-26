@@ -1,7 +1,7 @@
 package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xkcoding.http.HttpUtil;
+import com.xingyuv.http.HttpUtil;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
@@ -55,11 +55,11 @@ public class AuthXmlyRequest extends AuthDefaultRequest {
         this.checkResponse(accessTokenObject);
 
         return AuthToken.builder()
-            .accessToken(accessTokenObject.getString("access_token"))
-            .refreshToken(accessTokenObject.getString("refresh_token"))
-            .expireIn(accessTokenObject.getIntValue("expires_in"))
-            .uid(accessTokenObject.getString("uid"))
-            .build();
+                .accessToken(accessTokenObject.getString("access_token"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
+                .expireIn(accessTokenObject.getIntValue("expires_in"))
+                .uid(accessTokenObject.getString("uid"))
+                .build();
     }
 
     /**
@@ -72,13 +72,13 @@ public class AuthXmlyRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("response_type", "code")
-            .queryParam("client_id", config.getClientId())
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("state", getRealState(state))
-            .queryParam("client_os_type", "3")
-            .queryParam("device_id", config.getDeviceId())
-            .build();
+                .queryParam("response_type", "code")
+                .queryParam("client_id", config.getClientId())
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("state", getRealState(state))
+                .queryParam("client_os_type", "3")
+                .queryParam("device_id", config.getDeviceId())
+                .build();
     }
 
     /**
@@ -101,14 +101,14 @@ public class AuthXmlyRequest extends AuthDefaultRequest {
         JSONObject object = JSONObject.parseObject(rawUserInfo);
         checkResponse(object);
         return AuthUser.builder()
-            .uuid(object.getString("id"))
-            .nickname(object.getString("nickname"))
-            .avatar(object.getString("avatar_url"))
-            .rawUserInfo(object)
-            .source(source.toString())
-            .token(authToken)
-            .gender(AuthUserGender.UNKNOWN)
-            .build();
+                .uuid(object.getString("id"))
+                .nickname(object.getString("nickname"))
+                .avatar(object.getString("avatar_url"))
+                .rawUserInfo(object)
+                .source(source.toString())
+                .token(authToken)
+                .gender(AuthUserGender.UNKNOWN)
+                .build();
     }
 
     /**

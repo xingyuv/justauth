@@ -2,7 +2,7 @@ package com.xingyuv.jushauth.request;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xkcoding.http.support.HttpHeader;
+import com.xingyuv.http.support.HttpHeader;
 import com.xingyuv.jushauth.cache.AuthStateCache;
 import com.xingyuv.jushauth.config.AuthConfig;
 import com.xingyuv.jushauth.config.AuthDefaultSource;
@@ -56,7 +56,7 @@ public class AuthFeishuRequest extends AuthDefaultRequest {
         requestObject.put("app_id", config.getClientId());
         requestObject.put("app_secret", config.getClientSecret());
         String response = new HttpUtils(config.getHttpConfig()).post(url, requestObject.toJSONString(), new HttpHeader()
-            .add("Content-Type", "application/json")).getBody();
+                .add("Content-Type", "application/json")).getBody();
         JSONObject jsonObject = JSON.parseObject(response);
         this.checkResponse(jsonObject);
         String appAccessToken = jsonObject.getString("app_access_token");
@@ -79,22 +79,22 @@ public class AuthFeishuRequest extends AuthDefaultRequest {
     protected AuthUser getUserInfo(AuthToken authToken) {
         String accessToken = authToken.getAccessToken();
         String response = new HttpUtils(config.getHttpConfig()).get(source.userInfo(), null, new HttpHeader()
-            .add("Content-Type", "application/json")
-            .add("Authorization", "Bearer " + accessToken), false).getBody();
+                .add("Content-Type", "application/json")
+                .add("Authorization", "Bearer " + accessToken), false).getBody();
         JSONObject object = JSON.parseObject(response);
         this.checkResponse(object);
         JSONObject data = object.getJSONObject("data");
         return AuthUser.builder()
-            .rawUserInfo(object)
-            .uuid(data.getString("union_id"))
-            .username(data.getString("name"))
-            .nickname(data.getString("name"))
-            .avatar(data.getString("avatar_url"))
-            .email(data.getString("email"))
-            .gender(AuthUserGender.UNKNOWN)
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(object)
+                .uuid(data.getString("union_id"))
+                .username(data.getString("name"))
+                .nickname(data.getString("name"))
+                .avatar(data.getString("avatar_url"))
+                .email(data.getString("email"))
+                .gender(AuthUserGender.UNKNOWN)
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     @Override
@@ -104,34 +104,34 @@ public class AuthFeishuRequest extends AuthDefaultRequest {
         requestObject.put("grant_type", "refresh_token");
         requestObject.put("refresh_token", authToken.getRefreshToken());
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(getToken(requestObject, this.source.refresh()))
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(getToken(requestObject, this.source.refresh()))
+                .build();
 
     }
 
     private AuthToken getToken(JSONObject param, String url) {
         String response = new HttpUtils(config.getHttpConfig()).post(url, param.toJSONString(), new HttpHeader()
-            .add("Content-Type", "application/json")).getBody();
+                .add("Content-Type", "application/json")).getBody();
         JSONObject jsonObject = JSON.parseObject(response);
         this.checkResponse(jsonObject);
         JSONObject data = jsonObject.getJSONObject("data");
         return AuthToken.builder()
-            .accessToken(data.getString("access_token"))
-            .refreshToken(data.getString("refresh_token"))
-            .expireIn(data.getIntValue("expires_in"))
-            .tokenType(data.getString("token_type"))
-            .openId(data.getString("open_id"))
-            .build();
+                .accessToken(data.getString("access_token"))
+                .refreshToken(data.getString("refresh_token"))
+                .expireIn(data.getIntValue("expires_in"))
+                .tokenType(data.getString("token_type"))
+                .openId(data.getString("open_id"))
+                .build();
     }
 
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("app_id", config.getClientId())
-            .queryParam("redirect_uri", GlobalAuthUtils.urlEncode(config.getRedirectUri()))
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("app_id", config.getClientId())
+                .queryParam("redirect_uri", GlobalAuthUtils.urlEncode(config.getRedirectUri()))
+                .queryParam("state", getRealState(state))
+                .build();
     }
 
 

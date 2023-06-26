@@ -52,23 +52,23 @@ public class AuthJdRequest extends AuthDefaultRequest {
         this.checkResponse(object);
 
         return AuthToken.builder()
-            .accessToken(object.getString("access_token"))
-            .expireIn(object.getIntValue("expires_in"))
-            .refreshToken(object.getString("refresh_token"))
-            .scope(object.getString("scope"))
-            .openId(object.getString("open_id"))
-            .build();
+                .accessToken(object.getString("access_token"))
+                .expireIn(object.getIntValue("expires_in"))
+                .refreshToken(object.getString("refresh_token"))
+                .scope(object.getString("scope"))
+                .openId(object.getString("open_id"))
+                .build();
     }
 
     @Override
     protected AuthUser getUserInfo(AuthToken authToken) {
         UrlBuilder urlBuilder = UrlBuilder.fromBaseUrl(source.userInfo())
-            .queryParam("access_token", authToken.getAccessToken())
-            .queryParam("app_key", config.getClientId())
-            .queryParam("method", "jingdong.user.getUserInfoByOpenId")
-            .queryParam("360buy_param_json", "{\"openId\":\"" + authToken.getOpenId() + "\"}")
-            .queryParam("timestamp", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-            .queryParam("v", "2.0");
+                .queryParam("access_token", authToken.getAccessToken())
+                .queryParam("app_key", config.getClientId())
+                .queryParam("method", "jingdong.user.getUserInfoByOpenId")
+                .queryParam("360buy_param_json", "{\"openId\":\"" + authToken.getOpenId() + "\"}")
+                .queryParam("timestamp", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .queryParam("v", "2.0");
         urlBuilder.queryParam("sign", GlobalAuthUtils.generateJdSignature(config.getClientSecret(), urlBuilder.getReadOnlyParams()));
         String response = new HttpUtils(config.getHttpConfig()).post(urlBuilder.build(true)).getBody();
         JSONObject object = JSONObject.parseObject(response);
@@ -78,15 +78,15 @@ public class AuthJdRequest extends AuthDefaultRequest {
         JSONObject data = this.getUserDataJsonObject(object);
 
         return AuthUser.builder()
-            .rawUserInfo(data)
-            .uuid(authToken.getOpenId())
-            .username(data.getString("nickName"))
-            .nickname(data.getString("nickName"))
-            .avatar(data.getString("imageUrl"))
-            .gender(AuthUserGender.getRealGender(data.getString("gendar")))
-            .token(authToken)
-            .source(source.toString())
-            .build();
+                .rawUserInfo(data)
+                .uuid(authToken.getOpenId())
+                .username(data.getString("nickName"))
+                .nickname(data.getString("nickName"))
+                .avatar(data.getString("imageUrl"))
+                .gender(AuthUserGender.getRealGender(data.getString("gendar")))
+                .token(authToken)
+                .source(source.toString())
+                .build();
     }
 
     /**
@@ -98,8 +98,8 @@ public class AuthJdRequest extends AuthDefaultRequest {
      */
     private JSONObject getUserDataJsonObject(JSONObject object) {
         return object.getJSONObject("jingdong_user_getUserInfoByOpenId_response")
-            .getJSONObject("getuserinfobyappidandopenid_result")
-            .getJSONObject("data");
+                .getJSONObject("getuserinfobyappidandopenid_result")
+                .getJSONObject("data");
     }
 
     @Override
@@ -115,15 +115,15 @@ public class AuthJdRequest extends AuthDefaultRequest {
         this.checkResponse(object);
 
         return AuthResponse.builder()
-            .code(AuthResponseStatus.SUCCESS.getCode())
-            .data(AuthToken.builder()
-                .accessToken(object.getString("access_token"))
-                .expireIn(object.getIntValue("expires_in"))
-                .refreshToken(object.getString("refresh_token"))
-                .scope(object.getString("scope"))
-                .openId(object.getString("open_id"))
-                .build())
-            .build();
+                .code(AuthResponseStatus.SUCCESS.getCode())
+                .data(AuthToken.builder()
+                        .accessToken(object.getString("access_token"))
+                        .expireIn(object.getIntValue("expires_in"))
+                        .refreshToken(object.getString("refresh_token"))
+                        .scope(object.getString("scope"))
+                        .openId(object.getString("open_id"))
+                        .build())
+                .build();
     }
 
     private void checkResponse(JSONObject object) {
@@ -135,12 +135,12 @@ public class AuthJdRequest extends AuthDefaultRequest {
     @Override
     public String authorize(String state) {
         return UrlBuilder.fromBaseUrl(source.authorize())
-            .queryParam("app_key", config.getClientId())
-            .queryParam("response_type", "code")
-            .queryParam("redirect_uri", config.getRedirectUri())
-            .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthJdScope.values())))
-            .queryParam("state", getRealState(state))
-            .build();
+                .queryParam("app_key", config.getClientId())
+                .queryParam("response_type", "code")
+                .queryParam("redirect_uri", config.getRedirectUri())
+                .queryParam("scope", this.getScopes(" ", true, AuthScopeUtils.getDefaultScopes(AuthJdScope.values())))
+                .queryParam("state", getRealState(state))
+                .build();
     }
 
 }
