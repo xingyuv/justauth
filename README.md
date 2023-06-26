@@ -1,17 +1,11 @@
 <p align="center">
-	<a href="https://www.justauth.cn"><img src="https://gitee.com/xingyuv/static/raw/master/JustAuth/Justauth.png" width="400"></a>
-</p>
-<p align="center">
-	<strong>Login, so easy.</strong>
-</p>
-<p align="center">
-	<a target="_blank" href="https://search.maven.org/search?q=JustAuth">
-		<img src="https://img.shields.io/github/v/release/xingyuv/JustAuth?style=flat-square" ></img>
+	<a target="_blank" href="https://search.maven.org/search?q=justauth">
+		<img src="https://img.shields.io/github/v/release/xingyuv/justauth?style=flat-square" ></img>
 	</a>
-	<a target="_blank" href="https://oss.sonatype.org/content/repositories/snapshots/me/zhyd/oauth/JustAuth/">
-		<img src="https://img.shields.io/nexus/s/https/oss.sonatype.org/me.zhyd.oauth/JustAuth.svg?style=flat-square" ></img>
+	<a target="_blank" href="https://oss.sonatype.org/content/repositories/snapshots/com/xingyuv/justauth/">
+		<img src="https://img.shields.io/nexus/s/https/oss.sonatype.org/com.xingyuv.justauth/justauth.svg?style=flat-square" ></img>
 	</a>
-	<a target="_blank" href="https://gitee.com/xingyuv/JustAuth/blob/master/LICENSE">
+	<a target="_blank" href="https://gitee.com/xingyuv/justauth/blob/master/LICENSE">
 		<img src="https://img.shields.io/apm/l/vim-mode.svg?color=yellow" ></img>
 	</a>
 	<a target="_blank" href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">
@@ -20,14 +14,14 @@
 	<a target="_blank" href="https://www.justauth.cn" title="参考文档">
 		<img src="https://img.shields.io/badge/Docs-latest-blueviolet.svg" ></img>
 	</a>
-	<a href="https://codecov.io/gh/justauth/JustAuth">
-		<img src="https://codecov.io/gh/justauth/JustAuth/branch/master/graph/badge.svg?token=zYiAqd9aFz" />
+	<a href="https://codecov.io/gh/justauth/justauth">
+		<img src="https://codecov.io/gh/justauth/justauth/branch/master/graph/badge.svg?token=zYiAqd9aFz" />
 	</a>
-	<a href='https://gitee.com/xingyuv/JustAuth/stargazers'>
-	  <img src='https://gitee.com/xingyuv/JustAuth/badge/star.svg' alt='star'></img>
+	<a href='https://gitee.com/xingyuv/justauth/stargazers'>
+	  <img src='https://gitee.com/xingyuv/justauth/badge/star.svg' alt='star'></img>
 	</a>
-	<a target="_blank" href='https://github.com/xingyuv/JustAuth'>
-		<img src="https://img.shields.io/github/stars/xingyuv/JustAuth.svg?style=social" alt="github star"></img>
+	<a target="_blank" href='https://github.com/xingyuv/justauth'>
+		<img src="https://img.shields.io/github/stars/xingyuv/justauth.svg?style=social" alt="github star"></img>
 	</a>
 </p>
 
