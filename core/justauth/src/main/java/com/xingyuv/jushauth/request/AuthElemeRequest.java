@@ -77,7 +77,7 @@ public class AuthElemeRequest extends AuthDefaultRequest {
 
         String requestId = this.getRequestId();
 
-        Map<String, Object> paramsMap = new HashMap<>();
+        Map<String, Object> paramsMap = new HashMap<>(8);
         paramsMap.put("nop", "1.0.0");
         paramsMap.put("id", requestId);
         paramsMap.put("action", action);

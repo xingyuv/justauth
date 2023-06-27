@@ -91,7 +91,7 @@ public abstract class AbstractAuthDingtalkRequest extends AuthDefaultRequest {
     @Override
     protected String userInfoUrl(AuthToken authToken) {
         // 根据timestamp, appSecret计算签名值
-        String timestamp = System.currentTimeMillis() + "";
+        String timestamp = String.valueOf(System.currentTimeMillis());
         String urlEncodeSignature = GlobalAuthUtils.generateDingTalkSignature(config.getClientSecret(), timestamp);
 
         return UrlBuilder.fromBaseUrl(source.userInfo())

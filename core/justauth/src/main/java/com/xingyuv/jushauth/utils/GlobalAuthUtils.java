@@ -281,7 +281,7 @@ public class GlobalAuthUtils {
         final Map<String, Object> sorted = new TreeMap<>(parameters);
         sorted.put("app_key", appKey);
         sorted.put("timestamp", timestamp);
-        StringBuffer string = new StringBuffer();
+        StringBuilder string = new StringBuilder();
         for (Map.Entry<String, Object> entry : sorted.entrySet()) {
             string.append(entry.getKey()).append("=").append(JSON.toJSONString(entry.getValue()));
         }

@@ -35,7 +35,7 @@ public class AuthProginnRequest extends AuthDefaultRequest {
 
     @Override
     protected AuthToken getAccessToken(AuthCallback authCallback) {
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>(8);
         params.put("code", authCallback.getCode());
         params.put("client_id", config.getClientId());
         params.put("client_secret", config.getClientSecret());

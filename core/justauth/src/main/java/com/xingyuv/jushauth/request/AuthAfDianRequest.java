@@ -31,7 +31,7 @@ public class AuthAfDianRequest extends AuthDefaultRequest {
 
     @Override
     protected AuthToken getAccessToken(AuthCallback authCallback) {
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>(8);
         params.put("grant_type", "authorization_code");
         params.put("client_id", config.getClientId());
         params.put("client_secret", config.getClientSecret());

@@ -12,7 +12,7 @@
 
     <groupId>com.xingyuv</groupId>
     <artifactId>spring-boot-starter-justauth</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>spring-boot-starter-justauth</name>
     <description>spring-boot-starter-justauth</description>

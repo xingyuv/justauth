@@ -37,7 +37,7 @@ public class AuthLineRequest extends AuthDefaultRequest {
 
     @Override
     protected AuthToken getAccessToken(AuthCallback authCallback) {
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>(8);
         params.put("grant_type", "authorization_code");
         params.put("code", authCallback.getCode());
         params.put("redirect_uri", config.getRedirectUri());
@@ -89,7 +89,7 @@ public class AuthLineRequest extends AuthDefaultRequest {
 
     @Override
     public AuthResponse refresh(AuthToken oldToken) {
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>(8);
         params.put("grant_type", "refresh_token");
         params.put("refresh_token", oldToken.getRefreshToken());
         params.put("client_id", config.getClientId());

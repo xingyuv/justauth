@@ -28,6 +28,7 @@ import okhttp3.*;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * <p>
@@ -124,7 +125,7 @@ public class OkHttp3Impl extends AbstractHttp {
      */
     @Override
     public SimpleHttpResponse get(String url, Map<String, String> params, HttpHeader header, boolean encode) {
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();
+        HttpUrl.Builder urlBuilder = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder();
         if (encode) {
             MapUtil.forEach(params, urlBuilder::addEncodedQueryParameter);
         } else {

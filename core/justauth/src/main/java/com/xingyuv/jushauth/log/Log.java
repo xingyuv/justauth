@@ -56,7 +56,7 @@ public class Log {
     private static void print(Level level, String msg, Throwable t, PrintStream ps) {
         if (Config.enable) {
             if (level.getLevelNum() >= Config.level.getLevelNum()) {
-                ps.println(String.format("%s %s %s [%s] - %s", getDate(), Thread.currentThread().getName(), getCaller(), level, msg));
+                ps.printf("%s %s %s [%s] - %s%n", getDate(), Thread.currentThread().getName(), getCaller(), level, msg);
                 writeThrowable(t, ps);
                 ps.flush();
             }
