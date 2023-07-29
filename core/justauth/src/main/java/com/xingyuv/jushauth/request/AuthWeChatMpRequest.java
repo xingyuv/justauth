@@ -141,7 +141,7 @@ public class AuthWeChatMpRequest extends AuthDefaultRequest {
         return UrlBuilder.fromBaseUrl(source.accessToken())
                 .queryParam("appid", config.getClientId())
                 .queryParam("secret", config.getClientSecret())
-                .queryParam("js_code", code)
+                .queryParam("code", code)
                 .queryParam("grant_type", "authorization_code")
                 .build();
     }
