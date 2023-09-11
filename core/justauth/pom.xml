@@ -6,7 +6,7 @@
 
     <groupId>com.xingyuv</groupId>
     <artifactId>justauth</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://gitee.com/xingyuv/justauth</url>
@@ -60,11 +60,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <cobertura-version>2.7</cobertura-version>
-        <simple-http.version>1.0.3</simple-http.version>
+        <simple-http.version>1.0.4</simple-http.version>
         <lombok-version>1.18.28</lombok-version>
         <junit-version>4.13.2</junit-version>
         <fastjson-version>1.2.83</fastjson-version>
-        <alipay-sdk-version>4.35.171.ALL</alipay-sdk-version>
+        <alipay-sdk-version>4.35.79.ALL</alipay-sdk-version>
         <jacoco-version>0.8.10</jacoco-version>
     </properties>
 
