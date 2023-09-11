@@ -103,8 +103,8 @@ public class AuthWeChatMpRequest extends AuthDefaultRequest {
         this.checkResponse(accessTokenObject);
 
         return AuthToken.builder()
-                .accessToken(accessTokenObject.getString("session_key"))
-                .refreshToken(accessTokenObject.getString("session_key"))
+                .accessToken(accessTokenObject.getString("access_token"))
+                .refreshToken(accessTokenObject.getString("refresh_token"))
                 .expireIn(accessTokenObject.getIntValue("expires_in"))
                 .openId(accessTokenObject.getString("openid"))
                 .unionId(accessTokenObject.getString("unionid"))
