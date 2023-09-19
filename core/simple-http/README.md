@@ -16,13 +16,13 @@
 <dependency>
     <groupId>com.xingyuv</groupId>
     <artifactId>simple-http</artifactId>
-    <version>1.0.4</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
 ## 特点
 
-- 默认会按照下面的优先级自行寻找底层实现，`java 11 HttpClient -> OkHttp3 -> apache HttpClient -> hutool-http`
+- 默认会按照下面的优先级自行寻找底层实现，`HttpClient -> OkHttp3 -> apache HttpClient -> hutool-http`
 - 也可以自行实现 `support.com.xingyuv.http.Http` 接口，通过 `HttpUtil.setHttp(new MyHttpImpl())` 设置进来
 - 可以配置超时时间及代理
 
@@ -35,11 +35,3 @@ HttpUtil.setConfig(HttpConfig.builder()
         System.out.println("code = "+response.getCode());
         System.out.println("body = "+response.getBody());
 ```
-
-## TODO
-
-- [x] ~~集成 JDK11 的 HTTPClient~~(感谢[@春哥](https://github.com/ChunMengLu)
-  的 [PR#1](https://github.com/xkcoding/simple-http/pull/1))
-- [x] ~~支持代理~~(感谢[@亚东](https://github.com/zhangyd-c)的 [PR#7](https://github.com/xkcoding/simple-http/pull/7))
-- [x] ~~Response 封装~~(感谢[@小海](https://github.com/Mvbbb)
-  的 [PR#11](https://github.com/xkcoding/simple-http/pull/11))

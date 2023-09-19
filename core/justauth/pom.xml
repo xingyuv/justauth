@@ -6,7 +6,7 @@
 
     <groupId>com.xingyuv</groupId>
     <artifactId>justauth</artifactId>
-    <version>1.0.4</version>
+    <version>2.0.0</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://gitee.com/xingyuv/justauth</url>
@@ -58,21 +58,19 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <cobertura-version>2.7</cobertura-version>
-        <simple-http.version>1.0.4</simple-http.version>
-        <lombok-version>1.18.28</lombok-version>
-        <junit-version>4.13.2</junit-version>
-        <fastjson-version>1.2.83</fastjson-version>
-        <alipay-sdk-version>4.35.79.ALL</alipay-sdk-version>
-        <jacoco-version>0.8.10</jacoco-version>
+        <java.version>17</java.version>
+        <simple-http.version>2.0.0</simple-http.version>
+        <lombok.version>1.18.28</lombok.version>
+        <junit.version>4.13.2</junit.version>
+        <fastjson.version>1.2.83</fastjson.version>
+        <alipay-sdk.version>4.35.79.ALL</alipay-sdk.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok-version}</version>
+            <version>${lombok.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -83,18 +81,18 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit-version}</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>${fastjson-version}</version>
+            <version>${fastjson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-sdk-java</artifactId>
-            <version>${alipay-sdk-version}</version>
+            <version>${alipay-sdk.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
