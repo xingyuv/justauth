@@ -118,7 +118,7 @@ _项目内如果已有，请忽略。另外需要特别注意，如果项目中�
   <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-http</artifactId>
-      <version>5.8.21</version>
+      <version>5.8.22</version>
   </dependency>
   ```
 
@@ -128,7 +128,7 @@ _项目内如果已有，请忽略。另外需要特别注意，如果项目中�
   <dependency>
   	<groupId>org.apache.httpcomponents</groupId>
     	<artifactId>httpclient</artifactId>
-    	<version>4.5.13</version>
+    	<version>4.5.14</version>
   </dependency>
   ```
 

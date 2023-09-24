@@ -70,7 +70,7 @@ public class HttpUtil {
 
     private static <T extends AbstractHttp> AbstractHttp getHttpProxy(Class<T> clazz) {
         try {
-            return clazz.newInstance();
+            return clazz.getDeclaredConstructor().newInstance();
         } catch (Throwable e) {
             return null;
         }

@@ -16,7 +16,7 @@
 <dependency>
     <groupId>com.xingyuv</groupId>
     <artifactId>simple-http</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
 </dependency>
 ```
 
