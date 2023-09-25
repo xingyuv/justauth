@@ -6,7 +6,7 @@
 
     <groupId>com.xingyuv</groupId>
     <artifactId>justauth</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.2</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://gitee.com/xingyuv/justauth</url>
@@ -59,11 +59,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
-        <simple-http.version>2.0.0</simple-http.version>
-        <lombok.version>1.18.28</lombok.version>
+        <simple-http.version>2.0.2</simple-http.version>
+        <lombok.version>1.18.30</lombok.version>
         <junit.version>4.13.2</junit.version>
         <fastjson.version>1.2.83</fastjson.version>
-        <alipay-sdk.version>4.35.79.ALL</alipay-sdk.version>
+        <alipay-sdk.version>4.38.85.ALL</alipay-sdk.version>
     </properties>
 
     <dependencies>
@@ -106,9 +106,10 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>2.2.1</version>
+                        <version>3.2.1</version>
                         <executions>
                             <execution>
+                                <id>ossrh</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>jar-no-fork</goal>
@@ -120,14 +121,14 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
+                        <version>3.6.0</version>
                         <configuration>
                             <show>private</show>
                             <nohelp>true</nohelp>
                             <charset>UTF-8</charset>
                             <encoding>UTF-8</encoding>
                             <docencoding>UTF-8</docencoding>
-                            <additionalparam>-Xdoclint:none</additionalparam>
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
                             <!-- TODO 临时解决不规范的javadoc生成报错,后面要规范化后把这行去掉 -->
                         </configuration>
                         <executions>
@@ -157,10 +158,10 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.0</version>
+                        <version>3.10.1</version>
                         <configuration>
-                            <source>1.8</source>
-                            <target>1.8</target>
+                            <source>${java.version}</source>
+                            <target>${java.version}</target>
                             <fork>true</fork>
                             <verbose>true</verbose>
                             <encoding>UTF-8</encoding>
@@ -170,7 +171,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-release-plugin</artifactId>
-                        <version>2.5.1</version>
+                        <version>3.0.1</version>
                     </plugin>
                 </plugins>
             </build>
@@ -188,4 +189,3 @@
     </profiles>
     <!--中央仓库上传配置结束-->
 </project>
-
