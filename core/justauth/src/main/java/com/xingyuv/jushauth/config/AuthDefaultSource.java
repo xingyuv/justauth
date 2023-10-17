@@ -309,7 +309,7 @@ public enum AuthDefaultSource implements AuthSource {
 
         @Override
         public String accessToken() {
-            return "https://api.weixin.qq.com/sns/jscode2session";
+            return "https://api.weixin.qq.com/sns/oauth2/access_token";
         }
 
         @Override
