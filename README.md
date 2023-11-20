@@ -28,18 +28,23 @@
 
 -------------------------------------------------------------------------------
 
-QQ 群：230017570    
-微信群：justauth （备注`justauth`或者`ja`）    
 帮助文档：[www.justauth.cn](https://www.justauth.cn)
 
 ## 什么是 JustAuth？
 
-JustAuth，如你所见，它仅仅是一个**第三方授权登录**的**工具类库**，它可以让我们脱离繁琐的第三方登录 SDK，让登录变得**So easy!
-**
+JustAuth，如你所见，它仅仅是一个 **第三方授权登录** 的 **工具类库**，它可以让我们脱离繁琐的第三方登录 SDK，让登录变得 **So easy!**
 
 JustAuth
-集成了诸如：Github、Gitee、支付宝、新浪微博、微信、Google、Facebook、Twitter、StackOverflow等国内外数十家第三方平台。更多请参考<a href="https://www.justauth.cn" target="_blank">
+集成了诸如：Github、Gitee、支付宝、新浪微博、微信、Google、Facebook、Twitter、StackOverflow 等国内外数十家第三方平台。更多请参考<a href="https://www.justauth.cn" target="_blank">
 已集成的平台</a>
+
+并且额外支持如下能力：
+* 微信小程序登录
+* Spring Boot 3.X + JDK 17 的支持
+
+实战案例：
+* Spring Boot 架构：<https://gitee.com/zhijiantianya/ruoyi-vue-pro>
+* Spring Cloud 架构：<https://gitee.com/zhijiantianya/yudao-cloud>
 
 ## 有哪些特点？
 
@@ -62,6 +67,8 @@ JustAuth
 - 自定义 Scope，支持更完善的授权体系。<a href="https://www.justauth.cn/features/customize-scopes.html" target="_blank">
   参考文档</a>
 - 更多...<a href="https://www.justauth.cn" target="_blank">参考文档</a>
+
+## 与 JustAuth 
 
 ## 快速开始
 
@@ -212,40 +219,6 @@ AuthRequest authRequest = AuthRequestBuilder.builder()
     // ... 其他内容不变，参考上面的示例
     .build();
 ```
-
-## 赞助和支持
-
-感谢以下赞助商的支持：
-
-[我要赞助](https://www.justauth.cn/sponsor.html)
-
-## JustAuth 的用户
-
-有很多公司、组织和个人把 JustAuth 用于学习、研究、生产环境和商业产品中，包括（但不限于）：
-
-[![](docs/users/col.png)](https://www.mochiwang.com "给作者提供云写作的一个工具")![](docs/users/bjgyol.png)![](docs/users/foresealife.png)![](docs/users/sevnce.png)
-
-![](docs/users/bladex.png)![](docs/users/gun.png)![](docs/users/sika.jpg)![](docs/users/maxkey.png)![](docs/users/shiroaction.png)![](docs/users/xkcoding.png)
-
-怎么没有我？[登记](https://gitee.com/xingyuv/JustAuth/issues/IZ2T7)
-
-## 开源推荐
-
-- `JAP` 开源的登录认证中间件: [https://gitee.com/fujieid/jap](https://gitee.com/fujieid/jap)
-- `spring-boot-demo` 深度学习并实战 spring boot
-  的项目: [https://github.com/xkcoding/spring-boot-demo](https://github.com/xkcoding/spring-boot-demo)
-- `mica` SpringBoot 微服务高效开发工具集: [https://github.com/lets-mica/mica](https://github.com/lets-mica/mica)
-- `sureness` 面向restful api的高性能认证鉴权框架：[sureness](https://github.com/usthe/sureness)
-
-更多推荐，请参考：[JustAuth - 开源推荐](https://www.justauth.cn)
-
-## 鸣谢
-
-- 感谢 JetBrains 提供的免费开源 License：
-
-<p>
-<img src="https://images.gitee.com/uploads/images/2020/0406/220236_f5275c90_5531506.png" alt="图片引用自lets-mica" style="float:left;">
-</p>
 
 ## 其他
 

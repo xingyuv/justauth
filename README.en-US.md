@@ -177,16 +177,6 @@ I look forward to your joining us.
 
 [CHANGELOGS](https://www.justauth.cn/update.html)
 
-## Recommend
-
-- `spring-boot-demo` In-depth study and actual combat of spring boot
-  projects: [https://github.com/xkcoding/spring-boot-demo](https://github.com/xkcoding/spring-boot-demo)
-- `mica` Efficient Development of scaffolding by Spring
-  Cloud: [https://github.com/lets-mica/mica](https://github.com/lets-mica/mica)
-- `pig` Cosmic strongest Micro Services Certified authorized scaffolding (essential for
-  Architects): [https://gitee.com/log4j/pig](https://gitee.com/log4j/pig)
-- `SpringBlade` Complete online solution (necessary for enterprise development): https://gitee.com/smallc/SpringBlade
-
 ## References
 
 - [The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
