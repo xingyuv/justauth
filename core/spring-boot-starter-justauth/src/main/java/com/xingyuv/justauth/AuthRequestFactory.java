@@ -260,6 +260,8 @@ public class AuthRequestFactory {
                 return new AuthLineRequest(config, authStateCache);
             case OKTA:
                 return new AuthOktaRequest(config, authStateCache);
+            case WECHAT_MINI_APP:
+                return new AuthWeChatMiniAppRequest(config, authStateCache);
             default:
                 return null;
         }
