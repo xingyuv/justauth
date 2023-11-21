@@ -12,7 +12,7 @@
 
     <groupId>com.xingyuv</groupId>
     <artifactId>spring-boot-starter-justauth</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 
     <name>spring-boot-starter-justauth</name>
     <description>spring-boot-starter-justauth</description>
@@ -26,8 +26,8 @@
         <!--SpringBoot版本-->
         <spring-boot.version>2.7.17</spring-boot.version>
         <!--JustAuth版本-->
-        <justauth.version>1.0.7</justauth.version>
-        <hutool.version>5.8.22</hutool.version>
+        <justauth.version>1.0.8</justauth.version>
+        <hutool.version>5.8.23</hutool.version>
     </properties>
 
     <!-- Add typical dependencies for a web application -->

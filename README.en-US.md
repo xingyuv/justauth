@@ -73,7 +73,7 @@ These artifacts are available from Maven Central:
   <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-http</artifactId>
-      <version>5.8.22</version>
+      <version>5.8.23</version>
   </dependency>
   ```
 

@@ -125,7 +125,7 @@ _项目内如果已有，请忽略。另外需要特别注意，如果项目中�
   <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-http</artifactId>
-      <version>5.8.22</version>
+      <version>5.8.23</version>
   </dependency>
   ```
 

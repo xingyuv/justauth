@@ -6,7 +6,7 @@
 
     <groupId>com.xingyuv</groupId>
     <artifactId>simple-http</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 
     <name>${project.artifactId}</name>
     <url>https://github.com/xingyuv/simple-http</url>
@@ -23,7 +23,7 @@
         <junit.version>4.13.2</junit.version>
         <okhttp3.version>4.11.0</okhttp3.version>
         <httpclient.version>4.5.14</httpclient.version>
-        <hutool.version>5.8.22</hutool.version>
+        <hutool.version>5.8.23</hutool.version>
     </properties>
 
     <!--中央仓库上传配置开始-->
