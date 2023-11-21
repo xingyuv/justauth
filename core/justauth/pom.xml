@@ -59,11 +59,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
+        <cobertura.version>2.7</cobertura.version>
         <simple-http.version>2.0.4</simple-http.version>
         <lombok.version>1.18.30</lombok.version>
         <junit.version>4.13.2</junit.version>
         <fastjson.version>1.2.83</fastjson.version>
-        <alipay-sdk.version>4.38.85.ALL</alipay-sdk.version>
+        <alipay-sdk.version>4.38.140.ALL</alipay-sdk.version>
+        <jacoco.version>0.8.11</jacoco.version>
     </properties>
 
     <dependencies>
