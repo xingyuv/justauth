@@ -6,12 +6,12 @@
 
     <groupId>com.xingyuv</groupId>
     <artifactId>justauth-parent</artifactId>
-    <version>2.0.4</version>
+    <version>2.0.5</version>
     <packaging>pom</packaging>
 
     <properties>
-        <springboot.version>3.1.4</springboot.version>
-        <justauth.core.version>2.0.4</justauth.core.version>
+        <springboot.version>3.1.5</springboot.version>
+        <justauth.core.version>2.0.5</justauth.core.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <encoding>UTF-8</encoding>

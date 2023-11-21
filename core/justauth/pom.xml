@@ -6,7 +6,7 @@
 
     <groupId>com.xingyuv</groupId>
     <artifactId>justauth</artifactId>
-    <version>2.0.4</version>
+    <version>2.0.5</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://gitee.com/xingyuv/justauth</url>
@@ -60,7 +60,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
         <cobertura.version>2.7</cobertura.version>
-        <simple-http.version>2.0.4</simple-http.version>
+        <simple-http.version>2.0.5</simple-http.version>
         <lombok.version>1.18.30</lombok.version>
         <junit.version>4.13.2</junit.version>
         <fastjson.version>1.2.83</fastjson.version>
